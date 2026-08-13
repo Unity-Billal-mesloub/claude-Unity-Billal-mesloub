@@ -8,17 +8,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 The npx installer can now start a free week of CMEM Pro end to end:
 
-- **Trial funnel in `npx claude-mem install`** — pitch → email entry → magic-link → Stripe checkout, with the installer polling the pairing API and finishing setup automatically once the trial starts (#3524)
+- **Trial funnel in `npx claude-Unity-Billal-mesloub install`** — pitch → email entry → magic-link → Stripe checkout, with the installer polling the pairing API and finishing setup automatically once the trial starts (#3524)
 - **Device-code approval** — the terminal shows a short code (XXXX-XXXX) that you confirm in the browser before credentials are delivered, closing a pairing-secret disclosure vector (#3524)
 - **Live model pricing** — the installer now fetches model pricing from the API instead of shipping hardcoded numbers (#3515)
 
-Requires the cmem.ai backend released today (trial routes + `cli_pairings` device-authorization grant).
+Requires the cUnity-Billal-mesloub.ai backend released today (trial routes + `cli_pairings` device-authorization grant).
 
 ## [13.14.0] - 2026-08-08
 
-## CMEM Pro is now the first option in the installer
+## CUnity-Billal-mesloub Pro is now the first option in the installer
 
-`npx claude-mem` now leads its provider prompt with **CMEM Pro**, and every option shows what it actually costs per 1,000 observations — so the choice is made on price rather than brand recognition.
+`npx claude-Unity-Billal-mesloub` now leads its provider prompt with **CUnity-Billal-mesloub Pro**, and every option shows what it actually costs per 1,000 observations — so the choice is made on price rather than brand recognition.
 
 ```
 ◆  Which memory provider do you want to use?
@@ -30,43 +30,43 @@ Requires the cmem.ai backend released today (trial routes + `cli_pairings` devic
 
 Anthropic moves last: it is the most expensive per observation and it bills your own Claude plan.
 
-### Picking CMEM Pro
+### Picking CUnity-Billal-mesloub Pro
 
-Opens `cmem.ai/pro?from=installer`, waits for the `cm_pro_…` key the signup flow hands back, writes it to settings, and points you at the browser to finish cloud sync. The key is pasted by hand — no polling, no device-code handshake.
+Opens `cUnity-Billal-mesloub.ai/pro?from=installer`, waits for the `cm_pro_…` key the signup flow hands back, writes it to settings, and points you at the browser to finish cloud sync. The key is pasted by hand — no polling, no device-code handshake.
 
 ### No new provider code
 
-`OpenRouterProvider` is already a generic OpenAI-compatible client whose base URL and model both come from settings, so CMEM Pro is four settings writes:
+`OpenRouterProvider` is already a generic OpenAI-compatible client whose base URL and model both come from settings, so CUnity-Billal-mesloub Pro is four settings writes:
 
 ```json
 {
-  "CLAUDE_MEM_PROVIDER": "openrouter",
-  "CLAUDE_MEM_OPENROUTER_BASE_URL": "https://cmem.ai/api/inference/v1",
-  "CLAUDE_MEM_OPENROUTER_MODEL": "cmem-observer",
-  "CLAUDE_MEM_OPENROUTER_API_KEY": "cm_pro_<hex>"
+  "CLAUDE_UNITY-BILLAL-MESLOUB_PROVIDER": "openrouter",
+  "CLAUDE_UNITY-BILLAL-MESLOUB_OPENROUTER_BASE_URL": "https://cmem.ai/api/inference/v1",
+  "CLAUDE_UNITY-BILLAL-MESLOUB_OPENROUTER_MODEL": "cmem-observer",
+  "CLAUDE_UNITY-BILLAL-MESLOUB_OPENROUTER_API_KEY": "cm_pro_<hex>"
 }
 ```
 
-`'cmem'` is a prompt-only sentinel and never reaches `settings.json` — the worker still only understands `claude | gemini | openrouter`.
+`'cUnity-Billal-mesloub'` is a prompt-only sentinel and never reaches `settings.json` — the worker still only understands `claude | gemini | openrouter`.
 
 ### Cost figures
 
-New `src/npx-cli/cmem-pro-costs.ts` derives every label from one constant (`ratePerM × TOKENS_PER_OBSERVATION / 1000`), so re-pricing is a one-line edit. CMEM Pro deliberately carries no computed $/1k — it is a flat subscription that does not bill your tokens.
+New `src/npx-cli/cUnity-Billal-mesloub-pro-costs.ts` derives every label from one constant (`ratePerM × TOKENS_PER_OBSERVATION / 1000`), so re-pricing is a one-line edit. CMEM Pro deliberately carries no computed $/1k — it is a flat subscription that does not bill your tokens.
 
-`CMEM_PRO_ORIGIN` overrides the origin so the whole funnel can be walked against a dev server.
+`CUnity-Billal-mesloub_PRO_ORIGIN` overrides the origin so the whole funnel can be walked against a dev server.
 
 ### Notes
 
 - `openBrowser()` is best-effort; the URL is printed first, so headless boxes just get a copy-pasteable link.
 - Existing installs are unaffected — this changes the prompt, not any persisted provider.
 
-**Full Changelog**: https://github.com/thedotmack/claude-mem/compare/v13.13.1...v13.14.0
+**Full Changelog**: https://github.com/Unity-Billal-mesloub/claude-Unity-Billal-mesloub/compare/v13.13.1...v13.14.0
 
 ## [13.13.1] - 2026-08-03
 
 ## What’s new
 
-- Adds an interactive `/mode-creator` workflow that turns a user’s domain and note-taking needs into a custom claude-mem mode.
+- Adds an interactive `/mode-creator` workflow that turns a user’s domain and note-taking needs into a custom claude-Unity-Billal-mesloub mode.
 - Guides capture-type and tag design, including specialized suggestions when standard code mode is a useful baseline.
 - Installs custom modes in durable user storage and reports the active mode in startup context.
 - Adds optional tag-triggered Telegram notifications with guided bot configuration and verification.
@@ -86,7 +86,7 @@ These fire a **Telegram notification** by default, the same way `security_alert`
 
 ### Configuring
 
-Notifications are controlled by `CLAUDE_MEM_TELEGRAM_TRIGGER_TYPES` in `~/.claude-mem/settings.json`. The default is now `security_alert,sensitive`. Set the key to any comma-separated list of types, or to an empty string to turn notifications off entirely.
+Notifications are controlled by `CLAUDE_UNITY-BILLAL-MESLOUB_TELEGRAM_TRIGGER_TYPES` in `~/claude-Unity-Billal-mesloub/settings.json`. The default is now `security_alert,sensitive`. Set the key to any comma-separated list of types, or to an empty string to turn notifications off entirely.
 
 Existing installs are migrated automatically: if your trigger list is still the old default of exactly `security_alert`, it is rewritten to include `sensitive`. A customized list is left untouched. Without this migration the new type would never have notified on any existing install, because a fresh `settings.json` is seeded with every default and persisted values win on load.
 
@@ -99,7 +99,7 @@ If you had deliberately set your trigger list to exactly `security_alert` and wa
 - BMP-safe fallback for the new emoji, so injected context can't contribute a surrogate pair (the #2787 failure class).
 - Built plugin artifacts are regenerated, picking up the chroma concurrent-write fix from #3462 that had not yet been built into the shipped bundles.
 
-**Full changelog**: https://github.com/thedotmack/claude-mem/compare/v13.12.4...v13.13.0
+**Full changelog**: https://github.com/Unity-Billal-mesloub/claude-Unity-Billal-mesloub/compare/v13.12.4...v13.13.0
 
 ## [13.12.4] - 2026-07-23
 
@@ -117,7 +117,7 @@ The observer prompt's own guidance format taught the model to emit `keyword: des
 The v7/v9 table-rebuild migrations copy child tables with foreign keys enforced, so historical orphaned observations/summaries (no `sdk_sessions` parent) threw `FOREIGN KEY constraint failed` in the SessionStore constructor and the worker never reported ready. A pin-down test proved the site red→green; the fix repairs stub parents in-place before both rebuild copies — orphaned rows are user data and are never deleted. Also: adoption errors now log as real text instead of `[object Object]`, and the worktree-adoption kick moved after DB init so its write connection no longer races boot migrations (`database is locked`). Complements the stale-worker recycle fix shipped in 13.12.3. (#3390)
 
 ### Maintainer directives no longer ship to end users (#3381)
-Root CLAUDE.md's `Local Status Notes` and `Daily Maintenance` sections — including an autonomous upgrade-and-commit directive — shipped verbatim to every marketplace git-clone install and were obeyed by end-user Claude instances (the #2537 `.npmignore` guard only covers the npm tarball, see #3359). Those sections now live in gitignored `CLAUDE.local.md`; tracked CLAUDE.md keeps only contributor content, and the maintainer sync copies the slim file over any stale marketplace copy. (#3391)
+Root CLAUDE.md's `Local Status Notes` and `Daily Maintenance` sections — including an autonomous upgrade-and-commit directive — shipped verbatim to every marketplace git-clone install and were obeyed by end-user Claude instances (the #2537 `npmignore` guard only covers the npm tarball, see #3359). Those sections now live in gitignored `CLAUDE.local.md`; tracked CLAUDE.md keeps only contributor content, and the maintainer sync copies the slim file over any stale marketplace copy. (#3391)
 
 ## Verification
 Full suite 2539 pass / 0 fail, tsc clean, anti-pattern sweep over the round's diff clean, worker restart cycle at 13.12.4 shows none of the fixed failure signatures.
@@ -135,7 +135,7 @@ Full suite 2539 pass / 0 fail, tsc clean, anti-pattern sweep over the round's di
 3. waits for the port to actually close, and
 4. spawns the resolved installed version itself, via the existing lazy-spawn path and the single version oracle.
 
-The dying-worker successor handoff now serves only CLI-initiated `claude-mem restart`, where the running install *is* the resolved install.
+The dying-worker successor handoff now serves only CLI-initiated `claude-Unity-Billal-mesloub restart`, where the running install *is* the resolved install.
 
 **If you're currently stuck in the loop:** just update. The first hook that runs after this version installs will kill the resident stale worker and take over — no manual cleanup needed.
 
@@ -143,7 +143,7 @@ The dying-worker successor handoff now serves only CLI-initiated `claude-mem res
 
 ## [13.12.2] - 2026-07-23
 
-**54 community bug-fix PRs merged in one pass.** Every open PR in the repo (157 total) was evaluated against a strict rubric — now codified in [`docs/merge-rubric.md`](https://github.com/thedotmack/claude-mem/blob/main/docs/merge-rubric.md): root-cause corrections only, with no guards, circuit breakers, fallbacks, retries, fail-open modes, self-healing machinery, truncation, or bolt-on second systems.
+**54 community bug-fix PRs merged in one pass.** Every open PR in the repo (157 total) was evaluated against a strict rubric — now codified in [`docs/merge-rubric.md`](https://github.com/Unity-Billal-mesloub/claude-Unity-Billal-mesloub/blob/main/docs/merge-rubric.md): root-cause corrections only, with no guards, circuit breakers, fallbacks, retries, fail-open modes, self-healing machinery, truncation, or bolt-on second systems.
 
 ### Windows
 - Zombie-held worker ports now detected correctly, ending infinite startup-failure loops (#3356)
@@ -166,17 +166,17 @@ The dying-worker successor handoff now serves only CLI-initiated `claude-mem res
 - MCP `tools/list` advertises only tools that work in the active runtime (#3065); `search` routes to the Postgres-backed `/v1/search` in server runtime when it can serve the query faithfully (#3082)
 
 ### Worker & providers
-- `CLAUDE_MEM_MAX_CONCURRENT_AGENTS` actually enforced via atomic slot reservations (#3294)
+- `CLAUDE_UNITY-BILLAL-MESLOUB_MAX_CONCURRENT_AGENTS` actually enforced via atomic slot reservations (#3294)
 - Observations attributed to the current prompt's project after repo/worktree switches (#3237); claimed batches preserved on auth-failure prose instead of being deleted (#3236)
 - Worker startup waits through cold and concurrent readiness windows (#3238)
 - Observer thinking disabled so thinking-only skips can't trigger harness re-prompts (#3256); observer SDK sessions no longer pollute the user's project transcript tree (#2942)
-- `CLAUDE_MEM_TIER_SUMMARY_MODEL` honored on OpenAI-compatible providers (#3257)
+- `CLAUDE_UNITY-BILLAL-MESLOUB_TIER_SUMMARY_MODEL` honored on OpenAI-compatible providers (#3257)
 - Stale default model ids updated: Sonnet/Opus (#3187) and retired Gemini models (#3283)
 - `__IMPORTANT` MCP tool renamed `important_workflow` so strict clients can load the server (#3295); tsconfig `moduleResolution` moved to `bundler` for TS 6 (#3296)
 
 ### Hooks, context & installers
-- `CLAUDE_MEM_EXCLUDED_PROJECTS` honored on session-start injection (#3358); subagents without MCP tools skip file-context injection (#3341)
-- `~` expanded in `CLAUDE_MEM_DATA_DIR` (#3350) and `CLAUDE_CODE_PATH` (#3275); Homebrew `uvx` path shared with the worker preflight (#3276)
+- `CLAUDE_UNITY-BILLAL-MESLOUB_EXCLUDED_PROJECTS` honored on session-start injection (#3358); subagents without MCP tools skip file-context injection (#3341)
+- `~` expanded in `CLAUDE_UNITY-BILLAL-MESLOUB_DATA_DIR` (#3350) and `CLAUDE_CODE_PATH` (#3275); Homebrew `uvx` path shared with the worker preflight (#3276)
 - SessionStart no longer dumps raw JSON at the top of every session (#3282); Codex no longer receives a duplicate context payload (#3241) and transcripts continue after archival (#3223)
 - Worktree compound keys preserved from subdirectories (#3304)
 - Azure AI Foundry auth env preserved through the SDK sanitizer (#3314); invalid corpus names return 400 instead of 500 (#3251)
@@ -185,9 +185,9 @@ The dying-worker successor handoff now serves only CLI-initiated `claude-mem res
 - version-bump skill frontmatter name matches its directory (#3313)
 
 ### Docs
-- New [`docs/merge-rubric.md`](https://github.com/thedotmack/claude-mem/blob/main/docs/merge-rubric.md) — the acceptance bar for bug-fix PRs, distilled from this sweep.
+- New [`docs/merge-rubric.md`](https://github.com/Unity-Billal-mesloub/claude-Unity-Billal-mesloub/blob/main/docs/merge-rubric.md) — the acceptance bar for bug-fix PRs, distilled from this sweep.
 
-Thanks to everyone who contributed fixes: @rodboev, @stantheman0128, @huiihao, @jamincollins, @quinnmacro, @justindeisler, @davertor, @BBD-Resources, @povesma, @laihenyi, @LPdsgn, @KJJisBetter, @Steaeavean, @XX888QM, @rapidtackgithub, @SamuelZ12, @DNA, @girish-kanjiyani7, @E0993599799, @eslonaguiar, @desmond-rai, @Reese-max, @Wasabi-221, @mic2112, @yaw-sh, @derrickchwong, @SaadSharif4, @katsugtgz, @manoi-bms, @percy-raskova, @ShiroKSH, @eralpozcan, @anupamme, @SejiL, @remten341, @danscMax, @jamesdsizemore, and the PostHog bot fleet.
+Thanks to everyone who contributed fixes: @Unity-Billal-mesloub, and the PostHog bot fleet.
 
 ## [13.12.1] - 2026-07-23
 
@@ -205,7 +205,7 @@ Details: #3371
 
 ## Two-Lane Cloud Sync (cmem.ai Pro)
 
-This release ships the complete two-lane sync architecture between your local claude-mem database and the cmem.ai sync hub (PR #3333):
+This release ships the complete two-lane sync architecture between your local claude-Unity-Billal-mesloub database and the cmem.ai sync hub (PR #3333):
 
 - **Per-user Durable Object sync hub** — a Cloudflare Worker (`workers/sync-hub`) serving isolated HTTP push/pull lanes per user (Phase 1)
 - **Client apply path + schema migration v41** — deterministic application of remote changes into the local SQLite store (Phase 2)
@@ -215,7 +215,7 @@ This release ships the complete two-lane sync architecture between your local cl
 - **Canonical v2 projection pipeline** and SyncHub-only client cutover
 - Hardened verifier authentication on the sync hub
 
-**Sync is OFF by default.** `CLAUDE_MEM_CLOUD_SYNC_HUB_URL` defaults to empty — nothing leaves your machine unless you configure a hub URL (see the `cloud-sync` skill or https://docs.claude-mem.ai/cloud-sync).
+**Sync is OFF by default.** `CLAUDE_MEM_CLOUD_SYNC_HUB_URL` defaults to empty — nothing leaves your machine unless you configure a hub URL (see the `cloud-sync` skill or https://docs.claude-Unity-Billal-mesloub.ai/cloud-sync).
 
 ### Fixes
 
@@ -249,7 +249,7 @@ Community edge release for integrated batches 4-9. See PR #3172
 Patch release focused on cross-platform stability and worker/runtime correctness.
 
 ## Fixes
-- **Worker host**: clients now honor `CLAUDE_MEM_WORKER_HOST` (the address the server actually binds), with IPv6 literals bracketed correctly in health checks and display URLs.
+- **Worker host**: clients now honor `CLAUDE_UNITY-BILLAL-MESLOUB_WORKER_HOST` (the address the server actually binds), with IPv6 literals bracketed correctly in health checks and display URLs.
 - **Worker identity**: cache/marketplace/MCP/CLI/restart launches converge on one worker bundle (stops version-skew from two builds on one port).
 - **Windows**: centralized spawn shims remove the `shell:true` footgun; codex hooks emit a Windows-executable command instead of a POSIX-only one.
 - **Install**: `repair` now restores the marketplace runtime root (not just the cache); ships the `plugin/sqlite` runtime modules that were causing `MODULE_NOT_FOUND` on clean installs.
@@ -275,14 +275,14 @@ Closes #2947, #2972. Supersedes #2953 and #2948.
 
 ## Antigravity CLI support, Gemini CLI removed
 
-Google deprecated Gemini CLI's free/individual tier (cutoff June 18, 2026) in favor of **Antigravity CLI**, the official successor announced May 19, 2026. This release migrates claude-mem accordingly.
+Google deprecated Gemini CLI's free/individual tier (cutoff June 18, 2026) in favor of **Antigravity CLI**, the official successor announced May 19, 2026. This release migrates claude-UNITY-BTLLAL-MESLOUB accordingly.
 
 ### Removed
-- Gemini CLI host integration (adapter, installer, IDE-detection entry, hooks, dedicated docs/tests). The separate, still-supported Gemini LLM/observation provider (`CLAUDE_MEM_GEMINI_API_KEY`, `GeminiProvider`) is unaffected.
+- Gemini CLI host integration (adapter, installer, IDE-detection entry, hooks, dedicated docs/tests). The separate, still-supported Gemini LLM/observation provider (`CLAUDE_UNITY-BTLLAL-MESLOUB_GEMINI_API_KEY`, `GeminiProvider`) is unaffected.
 
 ### Added
-- Full Antigravity CLI (`agy`) support at feature parity: hooks (7-event map sharing Gemini CLI's proven `~/.gemini/settings.json`), dual MCP server registration, and `GEMINI.md`/rules-file context injection.
-- `npx claude-mem antigravity-cli install|status|uninstall` subcommand support.
+- Full Antigravity CLI (`agy`) support at feature parity: hooks (7-event map sharing Gemini CLI's proven `~/gemini/settings.json`), dual MCP server registration, and `GEMINI.md`/rules-file context injection.
+- `npx claude-Unity-Billal-mesloub antigravity-cli install|status|uninstall` subcommand support.
 
 Verified end-to-end against a real live Antigravity CLI install, including hook firing, MCP tool registration, and context injection.
 
@@ -309,7 +309,7 @@ The full conversation history is now sent to the provider, which owns its own co
 ### Removed
 - `OpenAICompatibleProvider.truncateHistory()` and the `requireNonEmptyToTruncate` flag
 - `truncateHistoryForOpenRouter` / `truncateHistoryForGemini` wrappers and their message/token constants
-- `CLAUDE_MEM_{GEMINI,OPENROUTER}_MAX_CONTEXT_MESSAGES` / `_MAX_TOKENS` settings, defaults, and validation
+- `CLAUDE_UNITY-BILLAL-MESLOUB_{GEMINI,OPENROUTER}_MAX_CONTEXT_MESSAGES` / `_MAX_TOKENS` settings, defaults, and validation
 - Related tests, docs, and installer references
 
 Merged in #3096. Verified: `tsc` clean, 2248 tests passing, build-and-sync clean.
@@ -333,17 +333,17 @@ Patch release shipping the platform-source recovery work merged in #3088, plus d
 - Stabilize session init after the server rename
 - Restore Chroma MCP mock to prevent cross-suite leakage
 
-**Full Changelog**: https://github.com/thedotmack/claude-mem/compare/v13.9.0...v13.9.1
+**Full Changelog**: https://github.com/Unity-Billal-mesloub/claude-Unity-Billal-mesloub/compare/v13.9.0...v13.9.1
 
 ## [13.9.0] - 2026-06-29
 
 ## Highlights
 
-### 🚀 New: \`claude-mem/sdk\` (cmem-sdk)
-A fully in-process capture → compress → semantic-search pipeline with **no HTTP worker and no Redis**. Import \`createCmemClient\` from \`claude-mem/sdk\`, point it at Postgres + a running \`uvx chroma-mcp\` + an LLM provider, and call \`capture\`/\`generate\`/\`search\`/\`context\`/session methods directly.
+### 🚀 New: \`claude-Unity-Billal-mesloub/sdk\` (cmem-sdk)
+A fully in-process capture → compress → semantic-search pipeline with **no HTTP worker and no Redis**. Import \`createCmemClient\` from \`claude-Unity-Billal-mesloub/sdk\`, point it at Postgres + a running \`uvx chroma-mcp\` + an LLM provider, and call \`capture\`/\`generate\`/\`search\`/\`context\`/session methods directly.
 
-- New reference docs: **CMEM-SDK Reference** under *SDK & Embedding*.
-- Bundle keeps \`pg\`, \`zod\`, \`@modelcontextprotocol/sdk\`, and \`@anthropic-ai/sdk\` external so consumers resolve them against the installed package.
+- New reference docs: **CUnity-Billal-mesloub-SDK Reference** under *SDK & Embedding*.
+- Bundle keeps \`pg\`, \`zod\`, \`@Unity-Billal-mesloub/sdk\` external so consumers resolve them against the installed package.
 
 ### ♻️ Server runtime rename
 \`server-beta\` → \`server\` across the runtime, with intentional back-compat aliases for existing settings files. Removed inert \`ProviderRegistry\`/\`EventBroadcaster\` boundaries and consolidated the queue resolver.
@@ -371,7 +371,7 @@ Carries generation-side observation volume and type mix on the `observer_turn_ro
 ### Merge notes
 - Merged latest `main` (Ponytail audit, v13.7.1), which removed fabrication tracking; the now-stale `fabrication_count` / `fabricated_count` references were dropped from code and docs accordingly.
 
-Full changes: https://github.com/thedotmack/claude-mem/pull/3017
+Full changes: https://github.com/Unity-Billal-mesloub/claude-Unity-Billal-mesloub/pull
 
 ## [13.7.1] - 2026-06-21
 
@@ -387,7 +387,7 @@ Cleanup + reliability release. No new user-facing features.
 - **Worker-restart hardening** via a single-spawn gate.
 - **Deterministic dependency closure** for the bundled plugin runtime.
 
-**Full Changelog**: https://github.com/thedotmack/claude-mem/compare/v13.7.0...v13.7.1
+**Full Changelog**: https://github.com/Unity-Billal-mesloub/claude-Unity-Billal-mesloub/compare/v13.7.0...v13.7.1
 
 ## [13.7.0] - 2026-06-20
 
@@ -399,11 +399,11 @@ A ground-up rebuild of claude-mem's telemetry — per-session rollups, unified i
 - **Per-session rollups** — `observer_turn_rollup` is now emitted **once per session at session end** (`rollup_reason` = session_end | worker_shutdown | safety_flush, plus `window_seq`) instead of per 5-minute wall-clock window. Memory-bounded with a safety sweep; drains correctly on worker shutdown.
 - **Unified instrumentation** — a single `instrument()` path fans out to the local logger (full fidelity) and telemetry (scrubbed/rolled-up). The logger stays telemetry-free.
 - **Redacted error tracking** — real error messages + trimmed stacks now reach PostHog as `$exception` events, consent-gated, profile-less, and fingerprint rate-limited. An allow-then-redact scrubber strips home dirs, absolute paths, DB connection-string credentials, URL userinfo, emails, API tokens (sk-/phc-/ghp-/AWS AKIA/JWT), hex, and IPv4; messages cap at 500 chars, stacks at ~2KB. Autocapture is fully redacted (on-disk source context is stripped, never sent).
-- **New kill-switch** — `CLAUDE_MEM_TELEMETRY_ERRORS=0` disables error capture independently of analytics.
+- **New kill-switch** — `CLAUDE_UNITY-BILLAL-MESLOUB_TELEMETRY_ERRORS=0` disables error capture independently of analytics.
 - **Docs** — `telemetry.mdx` rewritten to document the new model, the error-tracking opt-in + one-way-door note, and the opt-out switches.
 
 ### Privacy
-This release begins collecting redacted error messages/stacks (a deliberate, consent-gated shift from whitelist-only telemetry). Raw paths, prompts, project names, source code, and model output are still never collected. Opt out of all telemetry with `CLAUDE_MEM_TELEMETRY=0` / `DO_NOT_TRACK=1`, or errors-only with `CLAUDE_MEM_TELEMETRY_ERRORS=0`.
+This release begins collecting redacted error messages/stacks (a deliberate, consent-gated shift from whitelist-only telemetry). Raw paths, prompts, project names, source code, and model output are still never collected. Opt out of all telemetry with `CLAUDE_UNITY-BILLAL-MESLOUB_TELEMETRY=0` / `DO_NOT_TRACK=1`, or errors-only with `CLAUDE_UNITY-BILLAL-MESLOUB_TELEMETRY_ERRORS=0`.
 
 ## [13.6.2] - 2026-06-17
 
@@ -416,7 +416,7 @@ This release begins collecting redacted error messages/stacks (a deliberate, con
 ### CI
 - **Windows build pinned to `windows-2022`** — the `windows-latest` image moved to `windows-2025` (Visual Studio 18), which the bundled `node-gyp@11.5.0` can't detect, breaking native `tree-sitter` rebuilds. Pinned to `windows-2022` (VS2022) until node-gyp gains VS18 support.
 
-**Full Changelog**: https://github.com/thedotmack/claude-mem/compare/v13.6.1...v13.6.2
+**Full Changelog**: https://github.com/Unity-Billal-mesloub/claude-Unity-Billal-mesloub/compare/v13.6.1...v13.6.2
 
 ## [13.6.1] - 2026-06-15
 
@@ -424,13 +424,13 @@ Patch release.
 
 - feat(telemetry): backfill historical token-savings economics (#2934) — backfills inferred generation-cost economics into anonymized daily telemetry rollups, with scrub coverage and tests.
 
-Full changelog: https://github.com/thedotmack/claude-mem/blob/main/CHANGELOG.md
+Full changelog: https://github.com/Unity-Billal-mesloub/claude-Unity-Billal-mesloub/blob/main/CHANGELOG.md
 
 ## [13.6.0] - 2026-06-13
 
 ## 📊 Historical Telemetry Backfill
 
-claude-mem's growth metrics now extend back before telemetry existed. On the first worker start after this upgrade, each install performs a **one-time backfill** of anonymized daily activity rollups into PostHog via historical-migration ingestion — so installs-over-time, reconstructed WAU/MAU, and cohort retention reflect real usage history instead of starting at the telemetry ship date.
+claude-Unity-Billal-mesloub's growth metrics now extend back before telemetry existed. On the first worker start after this upgrade, each install performs a **one-time backfill** of anonymized daily activity rollups into PostHog via historical-migration ingestion — so installs-over-time, reconstructed WAU/MAU, and cohort retention reflect real usage history instead of starting at the telemetry ship date.
 
 ### What gets sent
 **Anonymous counts only — never titles, prompts, file contents, or project names:**
@@ -438,12 +438,12 @@ claude-mem's growth metrics now extend back before telemetry existed. On the fir
 - One `install_inferred` event carrying the install's first active date, drawn from trustworthy session timestamps
 
 ### Privacy & safety
-- Honors the exact same consent gates as live telemetry: `DO_NOT_TRACK`, `CLAUDE_MEM_TELEMETRY=0`, and `telemetry.json` opt-out. Opting out before your first post-upgrade worker start prevents the backfill entirely; a later opt-in still backfills.
+- Honors the exact same consent gates as live telemetry: `DO_NOT_TRACK`, `CLAUDE_UNITY-BILLAL-MESLOUB_TELEMETRY=0`, and `telemetry.json` opt-out. Opting out before your first post-upgrade worker start prevents the backfill entirely; a later opt-in still backfills.
 - Runs **once per install**, latched by a completion marker written only after confirmed delivery — failed sends retry on the next worker start, and deterministic event uuids make retries duplicate-safe.
-- `CLAUDE_MEM_TELEMETRY_DEBUG=1` dry-runs the full payload to stderr without sending anything.
+- `CLAUDE_UNITY-BILLAL-MESLOUB_TELEMETRY_DEBUG=1` dry-runs the full payload to stderr without sending anything.
 - Legacy epoch normalization and corrupt-row guards keep bad timestamps out of the historical record; partial days are never shipped.
 
-Full disclosure documented at [docs.claude-mem.ai/telemetry](https://docs.claude-mem.ai/telemetry).
+Full disclosure documented at [docs.claude-mem.ai/telemetry](https://docs.claude-Unity-Billal-mesloub.ai/telemetry).
 
 **PR**: #2912
 
@@ -455,7 +455,7 @@ Full disclosure documented at [docs.claude-mem.ai/telemetry](https://docs.claude
 
 If an abandoned npm-global `claude` binary sat earlier in PATH than your current install, every Observer spawn died instantly at flag parsing — worker healthy, zero observations, nothing in the logs. The resolver now:
 
-- **Probes every candidate for capability**, not just existence: each CLI is tested with `--permission-mode dontAsk --version`, the exact flags claude-mem passes on every agent spawn. Binaries that reject them (older than the 2.1.x line) are skipped up front with a clear warning.
+- **Probes every candidate for capability**, not just existence: each CLI is tested with `--permission-mode dontAsk --version`, the exact flags claude-Unity-Billal-mesloub passes on every agent spawn. Binaries that reject them (older than the 2.1.x line) are skipped up front with a clear warning.
 - **Prefers the newest capable version** — PATH order only breaks ties, so a stale binary can't shadow a current one.
 - **Fails loud, never silent**: an explicit `CLAUDE_CODE_PATH` that's too old throws with the version and the remedy; if every CLI found is too old, the error names each path and version.
 - **Self-heals on CLI updates**: successful resolutions are cached 15 minutes, failures are never cached — updating your CLI is picked up on the next observation without a worker restart.
@@ -479,7 +479,7 @@ This release rearchitects worker lifecycle management to eliminate the restart r
 - **PID file demoted to diagnostics** — liveness truth is the port + `/api/health`. Every PID-file deletion is owner-guarded, so a dying worker can never clobber its successor's file; `status` reports pid/version/uptime/workerPath from health alone and survives PID-file deletion.
 - **First-run fix** — settings bootstrap notices now go to stderr, never stdout: the very first hook invocation on a fresh install no longer emits corrupted JSON to the hook framework.
 - **Build chain hardened** — the dev sync-script's installed-version cache mirror (which wrote new code into old version dirs, manufacturing permanent version disagreement) and its duplicate HTTP restart trigger are deleted; `build-and-sync` restarts through one verified CLI path.
-- **Test hygiene** — the test suite can no longer touch the real `~/.claude-mem` (a preload tripwire isolates every run), ending sentinel-PID and corrupt-JSON pollution of production state.
+- **Test hygiene** — the test suite can no longer touch the real `~/claude-Unity-Billal-mesloub` (a preload tripwire isolates every run), ending sentinel-PID and corrupt-JSON pollution of production state.
 
 ### Validation
 
@@ -489,7 +489,7 @@ Triple-restart soak (3× consecutive verified restarts, zero duplicate/EADDRINUS
 
 ## Telemetry Reliability Signals (Plan 14)
 
-claude-mem instrumented success well — failure was invisible. This release adds the five highest-value missing reliability signals (#2874). Everything is closed-enum/count-only, whitelisted in the scrubber, and disclosed in both the [public docs](https://docs.claude-mem.ai/telemetry) and `claude-mem telemetry`.
+claude-mem instrumented success well — failure was invisible. This release adds the five highest-value missing reliability signals (#2874). Everything is closed-enum/count-only, whitelisted in the scrubber, and disclosed in both the [public docs](https://docs.claude-Unity-Billal-mesloub.ai/telemetry) and `claude-Unity-Billal-mesloub telemetry`.
 
 ### Search retrieval quality (`search_performed`)
 - `result_count`, `search_strategy` (`chroma|fts|filter_only`), `chroma_available`, `fallback_reason` (`none|chroma_connection|chroma_error|chroma_not_initialized`)
@@ -521,7 +521,7 @@ claude-mem instrumented success well — failure was invisible. This release add
 ## Privacy
 
 - No change to the IP promise: raw IP addresses are still **never attached to events by the client and never stored** — the sender IP is used transiently at ingest for the coarse-location lookup, then discarded.
-- The telemetry docs (https://docs.claude-mem.ai/telemetry) and the `npx claude-mem telemetry enable` consent screen now disclose the ingest-derived coarse location.
+- The telemetry docs (https://docs.claude-Unity-Billal-mesloub.ai/telemetry) and the `npx claude-Unity-Billal-mesloub telemetry enable` consent screen now disclose the ingest-derived coarse location.
 
 ## Tests
 
@@ -549,13 +549,13 @@ Every analytics number claude-mem reports about itself is now real, provider-rep
 - The `ide` person property on `worker_started` never populated — the lookup queried a legacy table and silently threw on every start since it shipped.
 - Epoch math now normalizes legacy seconds-unit rows (a few hundred per install) that would have reported install ages of ~20,000 days.
 
-All new properties are whitelisted in the scrubber, documented at https://docs.claude-mem.ai/telemetry, and shown in the `npx claude-mem telemetry` consent screen. Telemetry remains anonymous and opt-out (`npx claude-mem telemetry disable`).
+All new properties are whitelisted in the scrubber, documented at https://docs.claude-Unity-Billal-mesloub.ai/telemetry, and shown in the `npx claude-Unity-Billal-mesloub telemetry` consent screen. Telemetry remains anonymous and opt-out (`npx claude-Unity-Billal-mesloub telemetry disable`).
 
 ## [13.5.2] - 2026-06-10
 
 ## What's New in 13.5.2
 
-Platform and toolchain telemetry to diagnose the install → live-worker activation dropoff (anonymous, opt-out — see `npx claude-mem telemetry`):
+Platform and toolchain telemetry to diagnose the install → live-worker activation dropoff (anonymous, opt-out — see `npx claude-Unity-Billal-mesloub telemetry`):
 
 - Every event now carries `os_version` (kernel release — distinguishes Windows 10 vs 11, macOS releases), `is_wsl`, and `node_version` alongside the existing `os`/`arch`/`runtime` fields.
 - `install_completed` now reports `interactive` (TTY vs scripted), `install_method` (npm / bun / pnpm / yarn), and detected `bun_version`, `uv_version`, and `claude_code_version`.
@@ -567,7 +567,7 @@ Platform and toolchain telemetry to diagnose the install → live-worker activat
 
 ## What's New in 13.5.1
 
-Deep telemetry instrumentation (anonymous, opt-out — see `npx claude-mem telemetry`):
+Deep telemetry instrumentation (anonymous, opt-out — see `npx claude-Unity-Billal-mesloub telemetry`):
 
 - **`context_injected`** now reports token economics and observation-type breakdowns via the new `generateContextWithStats()` context builder, so we can measure real context savings.
 - **`session_compressed`** enriched with provider, model, real per-call token counts (Claude, Gemini, and OpenRouter at parity), latency, and observation-type breakdown.
@@ -579,7 +579,7 @@ Deep telemetry instrumentation (anonymous, opt-out — see `npx claude-mem telem
 
 ## Anonymous usage analytics (PostHog) — and the v13.5.0 release
 
-claude-mem now ships anonymous, privacy-hardened usage analytics. This is the first release with any telemetry, and it follows the standard dev-tool model (Homebrew, Next.js, Astro): **on by default, one command to opt out, and incapable of carrying your content by construction.**
+claude-Unity-Billal-mesloub now ships anonymous, privacy-hardened usage analytics. This is the first release with any telemetry, and it follows the standard dev-tool model (Homebrew, Next.js, Astro): **on by default, one command to opt out, and incapable of carrying your content by construction.**
 
 ### What's collected
 
@@ -591,13 +591,13 @@ Eight events (`install_completed`, `install_failed`, `uninstall_completed`, `wor
 
 Any one of these turns it off:
 
-- `npx claude-mem telemetry disable`
+- `npx claude-Unity-Billal-mesloub telemetry disable`
 - `DO_NOT_TRACK=1` (the universal standard — overrides everything)
-- `CLAUDE_MEM_TELEMETRY=0`
+- `CLAUDE_UNITY-BILLAL-MESLOUB_TELEMETRY=0`
 
-`npx claude-mem telemetry status` shows the current state and which setting decided it. The installer asks once at the end of `npx claude-mem install`, and your answer is never re-asked.
+`npx claude-mem telemetry status` shows the current state and which setting decided it. The installer asks once at the end of `npx claude-Unity-Billal-mesloub install`, and your answer is never re-asked.
 
-Full documentation of every field and event: https://docs.claude-mem.ai/telemetry
+Full documentation of every field and event: https://docs.claude-Unity-Billal-mesloub.ai/telemetry
 
 ### Also in this release
 
@@ -609,18 +609,18 @@ Full documentation of every field and event: https://docs.claude-mem.ai/telemetr
 
 ## What's new
 
-**Installer: \"work email\" opt-in** — the CMEM Online signup prompt in `npx claude-mem install` now asks for your *work* email (placeholder `you@company.com`). This surfaces which orgs are adopting claude-mem.
+**Installer: \"work email\" opt-in** — the CUnity-Billal-mesloub Online signup prompt in `npx claude-Unity-Billal-mesloub install` now asks for your *work* email (placeholder `you@company.com`). This surfaces which orgs are adopting claude-mem.
 
 ## [13.4.1] - 2026-06-08
 
 ## What's new
 
-### 🟣 CMEM Online email opt-in during `npx claude-mem install`
+### 🟣 CUnity-Billal-mesloub Online email opt-in during `npx claude-mem install`
 An optional, interactive email opt-in now appears at the start of the installer. Press Enter to skip — it never blocks or fails the install.
 
 - Collects an email + an optional "what are you working on / how can we help your team" note.
-- POSTs to the live `https://cmem.ai/api/waitlist` endpoint (handles persistence, dedup, and the confirmation email server-side). Overridable via `CLAUDE_MEM_SIGNUP_URL`; tagged `source: npx-installer`.
-- Skipped automatically when non-interactive, under CI, or with `CLAUDE_MEM_ONLINE_OPTIN=false`.
+- POSTs to the live `https://cUnity-Billal-mesloub.ai/api/waitlist` endpoint (handles persistence, dedup, and the confirmation email server-side). Overridable via `CLAUDE_Unity-Billal-mesloub_SIGNUP_URL`; tagged `source: npx-installer`.
+- Skipped automatically when non-interactive, under CI, or with `CLAUDE_UNITY-BILLAL-MESLOUB_ONLINE_OPTIN=false`.
 - Signup is persisted locally so returning users aren't re-prompted; a failed send is retried silently on the next install.
 - No secrets ship in the npx package — the endpoint is unauthenticated and the Resend key stays server-side. The waitlist endpoint was extended to capture the optional note.
 
@@ -633,7 +633,7 @@ An optional, interactive email opt-in now appears at the start of the installer.
 Clears a large defect backlog (plans 01–11 plus standalone fixes) and adds provider configurability. Test suite moved 46 → 0 failing and typecheck 24 → 0 errors over the branch.
 
 ### Features
-- **Configurable OpenAI-compatible base URL** for the OpenRouter provider (`CLAUDE_MEM_OPENROUTER_BASE_URL`) — point claude-mem at DeepSeek, LM Studio, or any custom OpenAI-compatible endpoint.
+- **Configurable OpenAI-compatible base URL** for the OpenRouter provider (`CLAUDE_UNITY-BILLAL-MESLOUB_OPENROUTER_BASE_URL`) — point claude-Unity-Billal-mesloub at DeepSeek, LM Studio, or any custom OpenAI-compatible endpoint.
 
 ### Fixes (highlights)
 - **Spawn contract (plan-02):** canonical `${CLAUDE_PLUGIN_ROOT}` resolution + Windows spawn fixes (codex.cmd, chroma-mcp cmd.exe quoting).
@@ -647,7 +647,7 @@ Clears a large defect backlog (plans 01–11 plus standalone fixes) and adds pro
 - New CI workflow (typecheck · build · test · bundle-size + docker pg+valkey e2e) made green; removed npm-lockfile dependency to match the repo's no-committed-lockfile convention.
 - Fixed `mock.module` logger leakage across test files and guarded sqlite3 `.recover` capability so CI runs cleanly.
 
-Full diff: https://github.com/thedotmack/claude-mem/pull/2701
+Full diff: https://github.com/Unity-Billal-mesloub/claude-Unity-Billal-mesloub/pull/2701
 
 ## [13.3.0] - 2026-05-21
 
@@ -661,8 +661,8 @@ Full diff: https://github.com/thedotmack/claude-mem/pull/2701
 
 ### Fixes
 
-- **fix(mcp): drop duplicate root `.mcp.json`** (#2411) — Claude Code's `/doctor` was warning "MCP server mcp-search skipped — same command/URL as already-configured mcp-search" for every plugin user. The root copy was vestigial; the plugin's namespaced registration now wins.
-- **fix: stop Codex transcript replay after hooks migration** (#2365) — disables the default `~/.codex/sessions/**/*.jsonl` watch (native Codex hooks are now authoritative). Repairs `~/.codex/config.toml` to set `[features] hooks = true` and `[plugins."claude-mem@claude-mem-local"] enabled = true` directly. Fixes transcript replay where files discovered after startup ignored `startAtEnd` and re-injected history.
+- **fix(mcp): drop duplicate root `mcp.json`** (#2411) — Claude Code's `/doctor` was warning "MCP server mcp-search skipped — same command/URL as already-configured mcp-search" for every plugin user. The root copy was vestigial; the plugin's namespaced registration now wins.
+- **fix: stop Codex transcript replay after hooks migration** (#2365) — disables the default `~/codex/sessions/**/*jsonl` watch (native Codex hooks are now authoritative). Repairs `~/codex/config.toml` to set `[features] hooks = true` and `[plugins."claude-mem@claude-mem-local"] enabled = true` directly. Fixes transcript replay where files discovered after startup ignored `startAtEnd` and re-injected history.
 
 Opt back into legacy Codex transcript ingestion with `CLAUDE_MEM_CODEX_TRANSCRIPT_INGESTION=true` if you depend on the JSONL watcher.
 
