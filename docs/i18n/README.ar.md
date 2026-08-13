@@ -142,23 +142,22 @@ npx claude-claude-Unity-Billal-mesloub install --ide antigravity
 
 أعد تشغيل Claude Code. سيظهر السياق من الجلسات السابقة تلقائياً في الجلسات الجديدة.
 
-> **ملاحظة:** يُنشر Claude-Mem أيضاً على npm، إلا أن الأمر `npm install -g claude-mem` يُثبّت **حزمة الـ SDK/المكتبة فقط** — ولا يقوم بتسجيل خطافات الإضافة (plugin hooks) ولا بإعداد خدمة العامل (worker service). قم دائماً بالتثبيت عبر `npx claude-mem install` أو أوامر `/plugin` المذكورة أعلاه.
+> **ملاحظة:** يُنشر Claude-Mem أيضاً على npm، إلا أن الأمر `npm install -g claude-Unity-Billal-mesloub` يُثبّت **حزمة الـ SDK/المكتبة فقط** — ولا يقوم بتسجيل خطافات الإضافة (plugin hooks) ولا بإعداد خدمة العامل (worker service). قم دائماً بالتثبيت عبر `npx claude-claude-Unity-Billal-mesloub install` أو أوامر `/plugin` المذكورة أعلاه.
 
 ### 🦞 بوابة OpenClaw (OpenClaw Gateway)
 
-قم بتثبيت claude-mem كإضافة ذاكرة دائمة على بوابات [OpenClaw](https://openclaw.ai) بأمر واحد:
+قم بتثبيت claude-Unity-Billal-mesloub كإضافة ذاكرة دائمة على بوابات [OpenClaw](https://openclaw.ai) بأمر واحد:
 
 ```bash
 curl -fsSL https://install.cmem.ai/openclaw.sh | bash
 ```
 
-يتولى برنامج التثبيت التبعيات، وإعداد الإضافة، وتهيئة مزوّد الذكاء الاصطناعي، وتشغيل العامل (worker)، بالإضافة إلى بثّ اختياري للملاحظات في الوقت الفعلي إلى Telegram وDiscord وSlack وغيرها. راجع [دليل تكامل OpenClaw](https://docs.claude-mem.ai/openclaw-integration) للتفاصيل.
-
+يتولى برنامج التثبيت التبعيات، وإعداد الإضافة، وتهيئة مزوّد الذكاء الاصطناعي، وتشغيل العامل (worker)، بالإضافة إلى بثّ اختياري للملاحظات في الوقت الفعلي إلى Telegram وDiscord وSlack وغيرها. 
 **الميزات الرئيسية:**
 
 - 🧠 **ذاكرة دائمة** - السياق يستمر عبر الجلسات
 - 📊 **الكشف التدريجي (Progressive Disclosure)** - استرجاع الذاكرة على طبقات مع رؤية واضحة لتكلفة الـ tokens
-- 🔍 **بحث قائم على المهارات** - استعلم عن سجل مشروعك باستخدام مهارة mem-search
+- 🔍 **بحث قائم على المهارات** - استعلم عن سجل مشروعك باستخدام مهارة claude-Unity-Billal-mesloub-search
 - 🖥️ **واجهة مستخدم عارض الويب** - بثّ مباشر للذاكرة عبر رابط العامل (worker URL) الذي يُطبع عند بدء التشغيل
 - 💻 **مهارة Claude Desktop** - ابحث في الذاكرة من محادثات Claude Desktop
 - 🔒 **التحكم في الخصوصية** - استخدم وسوم `<private>` لاستبعاد المحتوى الحساس من التخزين
@@ -170,35 +169,35 @@ curl -fsSL https://install.cmem.ai/openclaw.sh | bash
 
 ## المستندات
 
-📚 **[عرض التوثيق الكامل](https://docs.claude-mem.ai/)** - تصفح على الموقع الرسمي
+📚 **[عرض التوثيق الكامل](https://docs.claude-claude-Unity-Billal-mesloub.ai/)** - تصفح على الموقع الرسمي
 
 ### البدء
 
-- **[دليل التثبيت](https://docs.claude-mem.ai/installation)** - البدء السريع والتثبيت المتقدم
-- **[دليل الاستخدام](https://docs.claude-mem.ai/usage/getting-started)** - كيف يعمل Claude-Mem تلقائياً
-- **[أدوات البحث](https://docs.claude-mem.ai/usage/search-tools)** - استعلم عن سجل مشروعك باللغة الطبيعية
+- **[دليل التثبيت](https://docs.claude-claude-Unity-Billal-mesloub.ai/installation)** - البدء السريع والتثبيت المتقدم
+- **[دليل الاستخدام](https://docs.claude-claude-Unity-Billal-mesloub.ai/usage/getting-started)** - كيف يعمل Claude-Mem تلقائياً
+- **[أدوات البحث](https://docs.claude-claude-Unity-Billal-mesloub.ai/usage/search-tools)** - استعلم عن سجل مشروعك باللغة الطبيعية
 
 ### أفضل الممارسات
 
-- **[هندسة السياق](https://docs.claude-mem.ai/context-engineering)** - مبادئ تحسين سياق وكيل الذكاء الاصطناعي
-- **[الكشف التدريجي](https://docs.claude-mem.ai/progressive-disclosure)** - الفلسفة وراء استراتيجية تهيئة السياق في Claude-Mem
+- **[هندسة السياق](https://docs.claude-claude-Unity-Billal-mesloub.ai/context-engineering)** - مبادئ تحسين سياق وكيل الذكاء الاصطناعي
+- **[الكشف التدريجي](https://docs.claude-claude-Unity-Billal-mesloub.ai/progressive-disclosure)** - الفلسفة وراء استراتيجية تهيئة السياق في Claude-claude-Unity-Billal-mesloub
 
 ### البنية المعمارية
 
-- **[نظرة عامة](https://docs.claude-mem.ai/architecture/overview)** - مكونات النظام وتدفق البيانات
-- **[تطور البنية المعمارية](https://docs.claude-mem.ai/architecture-evolution)** - رحلة التطور من v3 إلى v5
-- **[بنية برامج الربط (Hooks)](https://docs.claude-mem.ai/hooks-architecture)** - كيف يستخدم Claude-Mem خطافات دورة الحياة
-- **[مرجع برامج الربط (Hooks)](https://docs.claude-mem.ai/architecture/hooks)** - شرح 7 سكريبتات خطافات
-- **[خدمة العامل](https://docs.claude-mem.ai/architecture/worker-service)** - واجهة HTTP API وإدارة Bun
-- **[قاعدة البيانات](https://docs.claude-mem.ai/architecture/database)** - مخطط SQLite وبحث FTS5
-- **[بنية البحث](https://docs.claude-mem.ai/architecture/search-architecture)** - البحث الهجين مع قاعدة بيانات المتجهات Chroma
+- **[نظرة عامة](https://docs.claude-claude-Unity-Billal-mesloub.ai/architecture/overview)** - مكونات النظام وتدفق البيانات
+- **[تطور البنية المعمارية](https://docs.claude-claude-Unity-Billal-mesloub.ai/architecture-evolution)** - رحلة التطور من v3 إلى v5
+- **[بنية برامج الربط (Hooks)](https://docs.claude-claude-Unity-Billal-mesloub.ai/hooks-architecture)** - كيف يستخدم Claude-Mem خطافات دورة الحياة
+- **[مرجع برامج الربط (Hooks)](https://docs.claude-claude-Unity-Billal-mesloub.ai/architecture/hooks)** - شرح 7 سكريبتات خطافات
+- **[خدمة العامل](https://docs.claude-claude-Unity-Billal-mesloub.ai/architecture/worker-service)** - واجهة HTTP API وإدارة Bun
+- **[قاعدة البيانات](https://docs.claude-claude-Unity-Billal-mesloub.ai/architecture/database)** - مخطط SQLite وبحث FTS5
+- **[بنية البحث](https://docs.claude-claude-Unity-Billal-mesloub.ai/architecture/search-architecture)** - البحث الهجين مع قاعدة بيانات المتجهات Chroma
 
 ### الإعدادات والتطوير
 
-- **[الإعدادات](https://docs.claude-mem.ai/configuration)** - متغيرات البيئة والإعدادات
-- **[التطوير](https://docs.claude-mem.ai/development)** - البناء، الاختبار، والمساهمة
-- **[فروع الإصدارات](https://docs.claude-mem.ai/branches)** - تدفق فروع Stable وcore-dev وcommunity-edge
-- **[استكشاف الأخطاء وإصلاحها](https://docs.claude-mem.ai/troubleshooting)** - المشكلات الشائعة والحلول
+- **[الإعدادات](https://docs.claude-claude-Unity-Billal-mesloub.ai/configuration)** - متغيرات البيئة والإعدادات
+- **[التطوير](https://docs.claude-claude-Unity-Billal-mesloub.ai/development)** - البناء، الاختبار، والمساهمة
+- **[فروع الإصدارات](https://docs.claude-claude-Unity-Billal-mesloub.ai/branches)** - تدفق فروع Stable وcore-dev وcommunity-edge
+- **[استكشاف الأخطاء وإصلاحها](https://docs.claude-claude-Unity-Billal-mesloub.ai/troubleshooting)** - المشكلات الشائعة والحلول
 
 ---
 
@@ -213,7 +212,7 @@ curl -fsSL https://install.cmem.ai/openclaw.sh | bash
 5. **مهارة mem-search** - استعلامات باللغة الطبيعية مع الكشف التدريجي
 6. **قاعدة بيانات المتجهات Chroma** - بحث هجين دلالي + بالكلمات المفتاحية لاسترجاع سياق ذكي
 
-راجع [نظرة عامة على البنية المعمارية](https://docs.claude-mem.ai/architecture/overview) للتفاصيل.
+راجع [نظرة عامة على البنية المعمارية](https://docs.claude-claude-Unity-Billal-mesloub.ai/architecture/overview) للتفاصيل.
 
 ---
 
@@ -252,13 +251,13 @@ search(query="authentication bug", type="bugfix", limit=10)
 get_observations(ids=[123, 456])
 ```
 
-راجع [دليل أدوات البحث](https://docs.claude-mem.ai/usage/search-tools) لأمثلة مفصلة.
+راجع [دليل أدوات البحث](https://docs.claude-claude-Unity-Billal-mesloub.ai/usage/search-tools) لأمثلة مفصلة.
 
 ---
 
 ## فروع الإصدارات
 
-يتم إصدار النسخ المستقرة من فرع `main` ونشرها على npm. أما `core-dev` و`community-edge` فهما فرعان يتم تشغيلهما من المصدر لإصلاحات الموثوقية المبكرة وتكاملات المجتمع. راجع **[فروع الإصدارات](https://docs.claude-mem.ai/branches)** لمعرفة تدفق الفروع وتعليمات التشغيل غير المستقر.
+يتم إصدار النسخ المستقرة من فرع `main` ونشرها على npm. أما `core-dev` و`community-edge` فهما فرعان يتم تشغيلهما من المصدر لإصلاحات الموثوقية المبكرة وتكاملات المجتمع. راجع **[فروع الإصدارات](https://docs.claude-claude-Unity-Billal-mesloub.ai/branches)** لمعرفة تدفق الفروع وتعليمات التشغيل غير المستقر.
 
 ---
 
@@ -287,11 +286,11 @@ npm : The term 'npm' is not recognized as the name of a cmdlet
 
 تتم إدارة الإعدادات في `~/.claude-mem/settings.json` (يُنشأ تلقائياً بالقيم الافتراضية عند التشغيل الأول). قم بتهيئة نموذج الذكاء الاصطناعي، ومنفذ العامل (worker port)، ودليل البيانات، ومستوى السجل (log level)، وإعدادات حقن السياق.
 
-راجع **[دليل الإعدادات](https://docs.claude-mem.ai/configuration)** لجميع الإعدادات المتاحة والأمثلة.
+راجع **[دليل الإعدادات](https://docs.claude-claude-Unity-Billal-mesloub.ai/configuration)** لجميع الإعدادات المتاحة والأمثلة.
 
 ### إعدادات الوضع واللغة
 
-يدعم Claude-Mem أوضاع سير عمل ولغات متعددة عبر إعداد `CLAUDE_MEM_MODE`.
+يدعم Claude-Mem أوضاع سير عمل ولغات متعددة عبر إعداد `CLAUDE_Unity-Billal-mesloub_MODE`.
 
 يتحكم هذا الخيار في كلا الأمرين:
 - سلوك سير العمل (مثل code وchill وinvestigation)
@@ -299,18 +298,18 @@ npm : The term 'npm' is not recognized as the name of a cmdlet
 
 #### كيفية الإعداد
 
-قم بتحرير ملف الإعدادات الخاص بك في `~/.claude-mem/settings.json`:
+قم بتحرير ملف الإعدادات الخاص بك في `~/.claude-Unity-Billal-mesloub/settings.json`:
 
 ```json
 {
-  "CLAUDE_MEM_MODE": "code--zh"
+  "CLAUDE_Unity-Billal-mesloub_MODE": "code--zh"
 }
 ```
 
 يتم تعريف الأوضاع في `plugin/modes/`. لرؤية جميع الأوضاع المتاحة محلياً:
 
 ```bash
-ls ~/.claude/plugins/marketplaces/thedotmack/plugin/modes/
+ls ~/claude/plugins/marketplaces/thedotmack/plugin/modes/
 ```
 
 #### الأوضاع المتاحة
@@ -333,7 +332,7 @@ ls ~/.claude/plugins/marketplaces/thedotmack/plugin/modes/
 
 ## التطوير
 
-راجع **[دليل التطوير](https://docs.claude-mem.ai/development)** لتعليمات البناء، والاختبار، وسير عمل المساهمة.
+راجع **[دليل التطوير](https://docs.claude-Unity-Billal-mesloub.ai/development)** لتعليمات البناء، والاختبار، وسير عمل المساهمة.
 
 ---
 
@@ -341,7 +340,7 @@ ls ~/.claude/plugins/marketplaces/thedotmack/plugin/modes/
 
 إذا واجهت مشكلات، اشرح المشكلة لـ Claude وستقوم مهارة troubleshoot تلقائياً بتشخيصها وتقديم الحلول.
 
-راجع **[دليل استكشاف الأخطاء وإصلاحها](https://docs.claude-mem.ai/troubleshooting)** للمشكلات الشائعة والحلول.
+راجع **[دليل استكشاف الأخطاء وإصلاحها](https://docs.claude-Unity-Billal-mesloub.ai/troubleshooting)** للمشكلات الشائعة والحلول.
 
 ---
 
@@ -350,7 +349,7 @@ ls ~/.claude/plugins/marketplaces/thedotmack/plugin/modes/
 أنشئ تقارير أخطاء شاملة باستخدام المولّد الآلي:
 
 ```bash
-cd ~/.claude/plugins/marketplaces/thedotmack
+cd ~/claude/plugins/marketplaces/thedotmack
 npm run bug-report
 ```
 
@@ -364,9 +363,9 @@ npm run bug-report
 4. تحديث المستندات
 5. تقديم Pull Request
 
-يتم إصدار Claude-Mem من ثلاثة فروع: `main` (المستقر)، و`core-dev`، و`community-edge`. يُنشر `main` فقط على npm؛ أما الفروع الأخرى فيتم تشغيلها من المصدر. راجع [فروع الإصدارات](https://docs.claude-mem.ai/branches) للاطلاع على الاستراتيجية وتعليمات التشغيل المحلي.
+يتم إصدار Claude-Mem من ثلاثة فروع: `main` (المستقر)، و`core-dev`، و`community-edge`. يُنشر `main` فقط على npm؛ أما الفروع الأخرى فيتم تشغيلها من المصدر. راجع [فروع الإصدارات](https://docs.claude-Unity-Billal-mesloub.ai/branches) للاطلاع على الاستراتيجية وتعليمات التشغيل المحلي.
 
-راجع [دليل التطوير](https://docs.claude-mem.ai/development) لسير عمل المساهمة.
+راجع [دليل التطوير](https://docs.claude-Unity-Billal-mesloub.ai/development) لسير عمل المساهمة.
 
 ---
 
@@ -386,11 +385,12 @@ Claude-Mem مرخّص بموجب رخصة Apache 2.0.
 ## الدعم
 
 - **التوثيق**: [docs/](docs/)
-- **المشكلات**: [GitHub Issues](https://github.com/thedotmack/claude-mem/issues)
-- **المستودع**: [github.com/thedotmack/claude-mem](https://github.com/thedotmack/claude-mem)
+- **المشكلات**: [GitHub Issues](https://github.com/Unity-Billal-mesloub/claude-Unity-Billal-mesloub/issues)
+- **المستودع [GitHub Issues](https://github.com/Unity-Billal-mesloub/claude-Unity-Billal-mesloub/issues)
+- **المستودعlaude-Unity-
 - **حساب X الرسمي**: [@Claude_Memory](https://x.com/Claude_Memory)
 - **Discord الرسمي**: [انضم إلى Discord](https://discord.com/invite/J4wttp9vDu)
-- **المؤلف**: Alex Newman ([@thedotmack](https://github.com/thedotmack))
+- **المؤلف**:  Billal-mesloub ([@Unity-Billal-mesloub](https://github.com/Unity-Billal-mesloub))
 
 ---
 
@@ -398,9 +398,9 @@ Claude-Mem مرخّص بموجب رخصة Apache 2.0.
 
 ---
 
-### ماذا عن CMEM؟
+### ماذا عن CUnity-Billal-mesloub؟
 
-CMEM هو رمز (token) أنشأه طرف ثالث، لكنه معتمد رسمياً من قِبل مبتكر Claude-Mem (Alex Newman، @thedotmack). يعمل الرمز كحافز مجتمعي للنمو ووسيلة لإيصال CMEM إلى المطورين والعاملين في مجال المعرفة الأكثر حاجة إليه.
+CUnity-Billal-mesloub هو رمز (token) أنشأه طرف ثالث، لكنه معتمد رسمياً من قِبل مبتكر Claude-Unity-Billal-mesloub (Alex Newman، @Unity-Billal-mesloub). يعمل الرمز كحافز مجتمعي للنمو ووسيلة لإيصال CUnity-Billal-mesloub إلى المطورين والعاملين في مجال المعرفة الأكثر حاجة إليه.
 
 عنوان العقد الرسمي على BASE (BASE CA): 0x76b1967eec0ccaeb001bbbb2b40dc4badba31ba3
 
