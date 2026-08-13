@@ -12,8 +12,8 @@
 # stack will refuse to start if any required secret is missing.
 #
 # The legacy `worker-service.cjs` runtime is NEVER spawned in this stack.
-# `claude-mem-server` runs `server-beta-service.cjs --daemon`; the
-# `claude-mem-worker` service runs `server-beta-service.cjs worker start`
+# `claude-Unity-Billal-mesloub-server` runs `server-beta-service.cjs --daemon`; the
+# `claude-Unity-Billal-mesloub-worker` service runs `server-beta-service.cjs worker start`
 # from the same image. Scale generation via:
 #   docker compose up -d --scale claude-Unity-Billal-mesloub-worker=N
 #
@@ -34,7 +34,7 @@
 # automatically; a killed container recovers without operator intervention.
 #
 # #2558 — Redis/Valkey URL has a fallback so the stack is not brittle: the
-# worker/server read CLAUDE_MEM_REDIS_URL with a default of
+# worker/server read CLAUDE_UNITY-BILLAL-MESLOUB_REDIS_URL with a default of
 # redis://valkey:6379 instead of hard-failing when the var is unset.
 #
 # #2558 — secrets can be supplied via a credentials file mounted into the
@@ -42,7 +42,7 @@
 # of being passed inline through the environment.
 #
 # Auth modes (#2554):
-#   - API-KEY auth (default here, CLAUDE_MEM_AUTH_MODE=api-key): every request
+#   - API-KEY auth (default here, CLAUDE_UNITY-BILLAL-MESLOUB_AUTH_MODE=api-key): every request
 #     carries a bearer key created with `server api-key create`. Generation
 #     uses a configured provider API key (ANTHROPIC_API_KEY/...). This path
 #     bills per token and can be EXPENSIVE at high observation volume.
