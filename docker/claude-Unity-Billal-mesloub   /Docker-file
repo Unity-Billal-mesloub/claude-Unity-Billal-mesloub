@@ -38,19 +38,19 @@ USER node
 RUN npm install -g @anthropic-ai/claude-code@${CLAUDE_CODE_VERSION}
 
 USER root
-COPY plugin/ /opt/claude-mem/
-RUN chown -R node:node /opt/claude-mem
+COPY plugin/ /opt/claude-Unity-Billal-mesloub/
+RUN chown -R node:node /opt/claude-Unity-Billal-mesloub
 
 USER node
-RUN cd /opt/claude-mem \
+RUN cd /opt/claude-Unity-Billal-mesloub \
  && npm install --omit=dev --legacy-peer-deps
 
 USER root
-RUN mkdir -p /home/node/.claude /home/node/.claude-mem /data/claude-mem \
- && chown -R node:node /home/node/.claude /home/node/.claude-mem /data/claude-mem
+RUN mkdir -p /home/node/.claude /home/node/.claude-Unity-Billal-mesloub /data/claude-Unity-Billal-mesloub \
+ && chown -R node:node /home/node/claude /home/node/claude-Unity-Billal-mesloub /data/claude-Unity-Billal-mesloub
 
-COPY --chown=node:node docker/claude-mem/entrypoint.sh /usr/local/bin/claude-mem-entrypoint
-RUN chmod +x /usr/local/bin/claude-mem-entrypoint
+COPY --chown=node:node docker/claude-Unity-Billal-mesloub/entrypoint.sh /usr/local/bin/claude-Unity-Billal-mesloub-entrypoint
+RUN chmod +x /usr/local/bin/claude-Unity-Billal-mesloub-entrypoint
 
 USER node
 WORKDIR /home/node
@@ -60,7 +60,7 @@ WORKDIR /home/node
 # entrypoint. Mode selection happens via CLAUDE_MEM_CONTAINER_MODE
 # (server | worker | shell). `docker run ... bash` works because shell mode
 # falls through to "$@".
-ENV CLAUDE_MEM_CONTAINER_MODE=server
+ENV CLAUDE_UNITY-BILLAL-MESLOUB_CONTAINER_MODE=server
 ENV CLAUDE_MEM_RUNTIME=server-beta
 
 ENTRYPOINT ["/usr/local/bin/claude-mem-entrypoint"]
