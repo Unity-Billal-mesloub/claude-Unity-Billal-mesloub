@@ -1,14 +1,14 @@
 {
-  "name": "claude-mem",
+  "name": "claude-Unity-Billal-mesloub",
   "version": "13.15.0",
   "description": "Memory compression system for Claude Code - persist context across sessions",
   "author": {
     "name": "Alex Newman",
-    "url": "https://github.com/thedotmack"
+    "url": "https://github.com/Unity-Billal-mesloub"
   },
-  "homepage": "https://github.com/thedotmack/claude-mem#readme",
-  "repository": "https://github.com/thedotmack/claude-mem",
-  "license": "Apache-2.0",
+  "homepage": "https://github.com/Unity-Billal-mesloub/claude-Unity-Billal-mesloub#readme",
+  "repository": "https://github.com/Unity-Billal-mesloub/claude-Unity-Billal-mesloub",
+  "license": "mit",
   "keywords": [
     "claude",
     "claude-code",
@@ -26,16 +26,16 @@
   "mcpServers": "./plugin/.mcp.json",
   "hooks": "./plugin/hooks/codex-hooks.json",
   "interface": {
-    "displayName": "claude-mem",
+    "displayName": "claude-Unity-Billal-mesloub",
     "shortDescription": "Persistent memory and context compression across coding sessions.",
-    "longDescription": "claude-mem captures coding-session activity, compresses it into reusable observations, and injects relevant context back into future Claude Code and Codex-compatible sessions.",
-    "developerName": "Alex Newman",
+    "longDescription": "claude-Unity-Billal-mesloub captures coding-session activity, compresses it into reusable observations, and injects relevant context back into future Claude Code and Codex-compatible sessions.",
+    "developerName": "Billal mesloub",
     "category": "Productivity",
     "capabilities": [
       "Interactive",
       "Write"
     ],
-    "websiteURL": "https://github.com/thedotmack/claude-mem",
+    "websiteURL": "https://github.com/Unity-Billal-mesloub/claude-Unity-Billal-mesloub",
     "defaultPrompt": [
       "Find what I already learned about this codebase before I start a new task.",
       "Show recent observations related to the files I am editing right now.",
