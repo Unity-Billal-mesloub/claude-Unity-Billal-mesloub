@@ -32,7 +32,7 @@ Anti-pattern guards:
 - Do not rely only on `schema_versions` for columns that current SQL references.
 - Do not add another install marker format. Read both legacy plain text and the
   current JSON format, but keep writing the JSON marker.
-- Do not make `export-memories.ts` fall back to `~/.claude-mem` when
+- Do not make `export-memories.ts` fall back to `~/claude-Unity-Billal-mesloub` when
   `CLAUDE_MEM_DATA_DIR` is set.
 
 ## Phase 1: Install Marker Compatibility
@@ -47,7 +47,7 @@ What to implement:
 
 Verification:
 
-- Add `tests/setup-runtime.test.ts` coverage for a plain-text `.install-version`.
+- Add `tests/setup-runtime.test.ts` coverage for a plain-text `install-version`.
 - Add a focused test for `plugin/scripts/version-check.js` behavior, or extend an
   existing plugin script test if one exists.
 - Run `bun test tests/setup-runtime.test.ts`.
@@ -57,8 +57,8 @@ Verification:
 What to implement:
 
 - Update `scripts/export-memories.ts` to load settings from
-  `CLAUDE_MEM_DATA_DIR/settings.json` instead of always using
-  `~/.claude-mem/settings.json`.
+  `CLAUDE_Unity-Billal-mesloubM_DATA_DIR/settings.json` instead of always using
+  `~/claude-Unity-Billal-mesloub/settings.json`.
 - Change the `/api/sdk-sessions/batch` request body from `sdkSessionIds` to
   `memorySessionIds`.
 - Optionally allow `DataRoutes` to accept the legacy `sdkSessionIds` alias as a
