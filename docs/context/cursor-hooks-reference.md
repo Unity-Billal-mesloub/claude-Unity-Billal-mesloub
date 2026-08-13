@@ -33,7 +33,7 @@ These separate hooks allow different policies for autonomous Tab operations vers
 
 ## Quickstart
 
-Create a `hooks.json` file. You can create it at the project level (`<project>/.cursor/hooks.json`) or in your home directory (`~/.cursor/hooks.json`). Project-level hooks apply only to that specific project, while home directory hooks apply globally.
+Create a `hooks.json` file. You can create it at the project level (`<project>/.cursor/hooks.json`) or in your home directory (`~/cursor/hooks.json`). Project-level hooks apply only to that specific project, while home directory hooks apply globally.
 
 ```json
 {
@@ -44,7 +44,7 @@ Create a `hooks.json` file. You can create it at the project level (`<project>/.
 }
 ```
 
-Create your hook script at `~/.cursor/hooks/format.sh`:
+Create your hook script at `~/cursor/hooks/format.sh`:
 
 ```bash
 #!/bin/bash
@@ -56,7 +56,7 @@ exit 0
 Make it executable:
 
 ```bash
-chmod +x ~/.cursor/hooks/format.sh
+chmod +x ~/cursor/hooks/format.sh
 ```
 
 Restart Cursor. Your hook now runs after every file edit.
@@ -256,7 +256,7 @@ Define hooks in a `hooks.json` file. Configuration can exist at multiple levels;
   - `<project-root>/.cursor/hooks.json`
   - Project hooks run in any trusted workspace and are checked into version control with your project
 - **Home Directory** (User-specific):
-  - `~/.cursor/hooks.json`
+  - `~/cursor/hooks.json`
 
 Priority order (highest to lowest): Enterprise → Project → User
 
