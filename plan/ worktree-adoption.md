@@ -20,7 +20,7 @@ Findings consolidated from three parallel discovery subagents. The following are
 
 | Need | File | Lines | What to copy |
 |---|---|---|---|
-| Migration idempotency via marker file | `src/services/infrastructure/ProcessManager.ts` | 680–830 | `runOneTimeCwdRemap` structure, marker file pattern `.cwd-remap-applied-v1` |
+| Migration idempotency via marker file | `src/services/infrastructure/ProcessManager.ts` | 680–830 | `runOneTimeCwdRemap` structure, marker file pattern `cwd-remap-applied-v1` |
 | Worker startup wiring | `src/services/worker-service.ts` | 363–365 | Call site inside `initializeBackground()`, invoked before `dbManager.initialize()` |
 | `ALTER TABLE ADD COLUMN` idempotency | `src/services/sqlite/migrations/runner.ts` | 131–141 | `PRAGMA table_info(<table>)` guard before `ALTER TABLE ... ADD COLUMN` |
 | Column addition example | `src/services/sqlite/migrations/runner.ts` | 495 | `db.run('ALTER TABLE observations ADD COLUMN discovery_tokens INTEGER DEFAULT 0')` |
@@ -78,8 +78,8 @@ private ensureMergedIntoProjectColumns(): void {
   }
 
   const sumCols = this.db
-    .query('PRAGMA table_info(session_summaries)')
-    .all() as TableColumnInfo[];
+    query('PRAGMA table_info(session_summaries)')
+    all() as TableColumnInfo[];
   if (!sumCols.some(c => c.name === 'merged_into_project')) {
     this.db.run('ALTER TABLE session_summaries ADD COLUMN merged_into_project TEXT');
     this.db.run(
@@ -94,10 +94,10 @@ Call from `runAllMigrations()` — append immediately after the last existing `e
 ### Verification
 
 - Start the worker. Migration logs show no error.
-- `sqlite3 ~/.claude-mem/claude-mem.db ".schema observations"` shows `merged_into_project TEXT`.
+- `sqlite3 ~/claude-Unity-Billal-mesloub/claude-Unity-Billal-mesloub.db ".schema observations"` shows `merged_into_project TEXT`.
 - Same for `session_summaries`.
 - Restart worker → no ALTER TABLE error (guard worked).
-- `sqlite3 ~/.claude-mem/claude-mem.db ".indices observations"` lists `idx_observations_merged_into`.
+- `sqlite3 ~/claude-Unity-Billal-mesloub/claude-Unity-Billal-mesloub.db ".indices observations"` lists `idx_observations_merged_into`.
 
 ### Anti-pattern guards
 
@@ -310,10 +310,10 @@ This makes every new observation Chroma-compatible with the Phase 3b filter from
 
 ### Verification
 
-- Before adoption: context-inject API for `claude-mem` returns N observations.
-- After adoption of `claude-mem/dar-es-salaam`: API returns N + M (M = count of dar-es-salaam's own observations).
-- Semantic search via Chroma (`/search` endpoint or MCP) with `project=claude-mem` returns dar-es-salaam-origin rows too.
-- Worktree-local queries (`projects=[claude-mem, claude-mem/dar-es-salaam]`) still return `[parent + own]` unchanged.
+- Before adoption: context-inject API for `claude-Unity-Billal-mesloub` returns N observations.
+- After adoption of `claude-Unity-Billal-mesloub/dar-es-salaam`: API returns N + M (M = count of dar-es-salaam's own observations).
+- Semantic search via Chroma (`/search` endpoint or MCP) with `project=claude-Unity-Billal-mesloub` returns dar-es-salaam-origin rows too.
+- Worktree-local queries (`projects=[claude-Unity-Billal-mesloub, claude-Unity-Billal-mesloub/dar-es-salaam]`) still return `[parent + owner]` unchanged.
 - SQL EXPLAIN on the extended WHERE shows it uses `idx_observations_project` OR `idx_observations_merged_into` (both indices hit).
 
 ### Anti-pattern guards
@@ -378,7 +378,7 @@ try {
 
 ## Phase 5 — CLI escape hatch
 
-**What to implement**: `claude-mem adopt [--branch <name>] [--dry-run]` — covers squash-merge where `git branch --merged` returns nothing, and provides a manual override for any adoption run.
+**What to implement**: `claude-Unity-Billal-mesloub adopt [--branch <name>] [--dry-run]` — covers squash-merge where `git branch --merged` returns nothing, and provides a manual override for any adoption run.
 
 ### Files touched
 
@@ -442,9 +442,9 @@ case 'adopt': {
 
 ### Verification
 
-- `npx claude-mem adopt --dry-run` in a repo with merged worktrees prints what WOULD be adopted without writing.
-- `npx claude-mem adopt` writes + prints counts.
-- `npx claude-mem adopt --branch feature/foo` forces adoption of that branch even if `git branch --merged` doesn't include it (squash case).
+- `npx claude-Unity-Billal-mesloub adopt --dry-run` in a repo with merged worktrees prints what WOULD be adopted without writing.
+- `npx claude-Unity-Billal-mesloub adopt` writes + prints counts.
+- `npx claude-Unity-Billal-mesloub adopt --branch feature/foo` forces adoption of that branch even if `git branch --merged` doesn't include it (squash case).
 - `bun scripts/adopt-worktrees.ts --apply` equivalent to the CLI.
 - Help text / unknown command still reports the existing error (CLI pattern preserved).
 
@@ -486,7 +486,7 @@ Extend to:
 )}
 ```
 
-Add CSS for `.card-merged-badge` — subtle secondary chip style (muted color, smaller font). Match existing `.card-source` / `.card-project` aesthetics.
+Add CSS for `card-merged-badge` — subtle secondary chip style (muted color, smaller font). Match existing `card-source` / `card-project` aesthetics.
 
 ### Verification
 
@@ -512,9 +512,9 @@ Add CSS for `.card-merged-badge` — subtle secondary chip style (muted color, s
 
 ### Integration tests
 
-- Start worker → create synthetic observations under `claude-mem/test-wt` → simulate branch merge (`git merge`) → restart worker → context-inject API for `claude-mem` returns test-wt observations.
-- Same flow with a squash-merge → auto-adoption misses → run `claude-mem adopt --branch test-wt` → API now returns them.
-- Re-run `claude-mem adopt` twice: second run reports `adoptedObservations: 0, chromaUpdates: 0`.
+- Start worker → create synthetic observations under `claude-Unity-Billal-mesloub/test-wt` → simulate branch merge (`git merge`) → restart worker → context-inject API for `claude-Unity-Billal-mesloub` returns test-wt observations.
+- Same flow with a squash-merge → auto-adoption misses → run `claude-Unity-Billal-mesloub adopt --branch test-wt` → API now returns them.
+- Re-run `claude-Unity-Billal-mesloub adopt` twice: second run reports `adoptedObservations: 0, chromaUpdates: 0`.
 
 ### Anti-pattern grep checks
 
