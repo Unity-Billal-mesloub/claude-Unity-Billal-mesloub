@@ -1,10 +1,10 @@
-# Comprehensive Claude-Mem Installer with @clack/prompts
+# Comprehensive Claude-Unity-Billal-mesloub Installer with @clack/prompts
 
 ## Overview
 
-Build a beautiful, animated CLI installer for claude-mem using `@clack/prompts` (v1.0.1). Distributable via `npx claude-mem-installer` and `curl -fsSL https://install.cmem.ai | bash`. Replaces the need for users to manually clone, build, configure settings, and start the worker.
+Build a beautiful, animated CLI installer for claude-Unity-Billal-mesloub using `@clack/prompts` (v1.0.1). Distributable via `npx claude-Unity-Billal-mesloub-installer` and `curl -fsSL https://install.cUnity-Billal-mesloub.ai | bash`. Replaces the need for users to manually clone, build, configure settings, and start the worker.
 
-**Worktree**: `feat/animated-installer` at `.claude/worktrees/animated-installer`
+**Worktree**: `feat/animated-installer` at `claude-Unity-Billal-mesloub/worktrees/animated-installer`
 
 ---
 
@@ -49,7 +49,7 @@ Build a beautiful, animated CLI installer for claude-mem using `@clack/prompts` 
 - Settings validation: `src/services/server/SettingsRoutes.ts`
 - Worker startup: `src/services/worker-service.ts` (lines 337-359)
 - Health check: `src/services/infrastructure/HealthMonitor.ts`
-- Plugin registration: `plugin/.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json`
+- Plugin registration: `plugin/claude-Unity-Billal-mesloub-plugin/plugin.json`, `.claude-plugin/marketplace.json`
 - Marketplace sync: `scripts/sync-marketplace.cjs`
 - Cursor integration: `src/services/integrations/CursorHooksInstaller.ts`
 - Existing OpenClaw installer: `install/public/openclaw.sh` (reference for logic, not code to copy)
@@ -88,10 +88,10 @@ Build a beautiful, animated CLI installer for claude-mem using `@clack/prompts` 
 2. **Create `package.json`**:
    ```json
    {
-     "name": "claude-mem-installer",
+     "name": "claude-Unity-Billal-mesloub-installer",
      "version": "1.0.0",
      "type": "module",
-     "bin": { "claude-mem-installer": "./dist/index.js" },
+     "bin": { "claude-Unity-Billal-mesloub-installer": "./dist/index.js" },
      "files": ["dist"],
      "scripts": {
        "build": "node build.mjs",
@@ -134,14 +134,14 @@ Build a beautiful, animated CLI installer for claude-mem using `@clack/prompts` 
 ### Tasks
 
 1. **`src/index.ts`** — Entry point:
-   - TTY guard: if `!process.stdin.isTTY`, print error directing user to `npx claude-mem-installer`, exit 1
+   - TTY guard: if `!process.stdin.isTTY`, print error directing user to `npx claude-Unity-Billal-mesloub-installer`, exit 1
    - Import and call `runInstaller()` from steps
    - Top-level catch → `p.cancel()` + exit 1
 
 2. **`src/steps/welcome.ts`** — Welcome step:
-   - `p.intro()` with styled title using picocolors: `" claude-mem installer "`
+   - `p.intro()` with styled title using picocolors: `" claude-Unity-Billal-mesloub installer "`
    - Display version info via `p.log.info()`
-   - Check if already installed (detect `~/.claude-mem/settings.json` and `~/.claude/plugins/marketplaces/thedotmack/`)
+   - Check if already installed (detect `~/claude-Unity-Billal-mesloub/settings.json` and `~/claude/plugins/marketplaces/Billal mesloub/`)
    - If upgrade detected, `p.confirm()`: "claude-mem is already installed. Upgrade?"
    - `p.select()` for install mode: Fresh Install vs Upgrade vs Configure Only
 
@@ -168,7 +168,7 @@ Build a beautiful, animated CLI installer for claude-mem using `@clack/prompts` 
    - Use `p.tasks()` to check each dependency sequentially with animated spinners:
      - **Node.js**: Verify >= 18.0.0 via `process.version`
      - **git**: `commandExists('git')`, show install instructions per OS if missing
-     - **Bun**: Check PATH + common locations (`~/.bun/bin/bun`, `/usr/local/bin/bun`, `/opt/homebrew/bin/bun`). Min version 1.1.14. Offer to auto-install from `https://bun.sh/install`
+     - **Bun**: Check PATH + common locations (`~/bun/bin/bun`, `/usr/local/bin/bun`, `/opt/homebrew/bin/bun`). Min version 1.1.14. Offer to auto-install from `https://bun.sh/install`
      - **uv**: Check PATH + common locations (`~/.local/bin/uv`, `~/.cargo/bin/uv`). Offer to auto-install from `https://astral.sh/uv/install.sh`
    - For missing deps: `p.confirm()` to auto-install, or show manual instructions
    - After install attempts, re-verify each dep
@@ -249,8 +249,8 @@ Build a beautiful, animated CLI installer for claude-mem using `@clack/prompts` 
 2. **`src/utils/settings-writer.ts`** — Write settings:
    - Build flat key-value settings object matching SettingsDefaultsManager schema
    - Merge with existing settings if upgrading (preserve user customizations)
-   - Write to `~/.claude-mem/settings.json`
-   - Create `~/.claude-mem/` directory if it doesn't exist
+   - Write to `~/claude-Unity-Billal-mesloub/settings.json`
+   - Create `~/claude-Unity-Billal-mesloub/` directory if it doesn't exist
 
 ### Verification
 - [ ] Default settings mode skips all detailed prompts
@@ -268,24 +268,24 @@ Build a beautiful, animated CLI installer for claude-mem using `@clack/prompts` 
 
 1. **`src/steps/install.ts`** — Installation runner:
    - Use `p.tasks()` for visual progress:
-     - **"Cloning claude-mem repository"**: `git clone --depth 1 https://github.com/thedotmack/claude-mem.git` to temp dir
+     - **"Cloning claude-mem repository"**: `git clone --depth 1 https://github.com/Unity-Billal-mesloub/claude-Unity-Billal-mesloub.git` to temp dir
      - **"Installing dependencies"**: `npm install` in cloned repo
      - **"Building plugin"**: `npm run build` in cloned repo
-     - **"Registering plugin"**: Copy plugin files to `~/.claude/plugins/marketplaces/thedotmack/`
+     - **"Registering plugin"**: Copy plugin files to `~/claude/plugins/marketplaces/Billal mesloub/`
        - Create marketplace.json, plugin.json structure
-       - Register in `~/.claude/plugins/known_marketplaces.json`
-       - Add to `~/.claude/plugins/installed_plugins.json`
-       - Enable in `~/.claude/settings.json` under `enabledPlugins`
+       - Register in `~/claude/plugins/known_marketplaces.json`
+       - Add to `~/claude/plugins/installed_plugins.json`
+       - Enable in `~/claude/settings.json` under `enabledPlugins`
      - **"Installing dependencies"** (in marketplace dir): `npm install`
    - For Cursor (if selected):
      - **"Configuring Cursor hooks"**: Run Cursor hooks installer logic
-     - Write hooks.json to `~/.cursor/` or project-level `.cursor/`
-     - Configure MCP in `.cursor/mcp.json`
+     - Write hooks.json to `~/cursor/` or project-level `cursor/`
+     - Configure MCP in `cursor/mcp.json`
 
 2. **`src/steps/worker.ts`** — Worker startup:
    - Use `p.spinner()` for worker startup:
      - Start worker: `bun plugin/scripts/worker-service.cjs` (from marketplace dir)
-     - Write PID file to `~/.claude-mem/worker.pid`
+     - Write PID file to `~/claude-Unity-Billal-mesloub/worker.pid`
    - Two-stage health check (copy pattern from OpenClaw installer):
      - Stage 1: Poll `/api/health` — spinner message: "Starting worker service..."
      - Stage 2: Poll `/api/readiness` — spinner message: "Initializing database..."
@@ -294,7 +294,7 @@ Build a beautiful, animated CLI installer for claude-mem using `@clack/prompts` 
      - On failure: `spinner.error("Worker failed to start")`, show log path
 
 ### Verification
-- [ ] Plugin files exist at `~/.claude/plugins/marketplaces/thedotmack/`
+- [ ] Plugin files exist at `~/claude/plugins/marketplaces/Billal mesloub/`
 - [ ] known_marketplaces.json updated
 - [ ] installed_plugins.json updated
 - [ ] settings.json has enabledPlugins entry
@@ -332,7 +332,7 @@ Build a beautiful, animated CLI installer for claude-mem using `@clack/prompts` 
 
 ## Phase 8: curl|bash Bootstrap Script
 
-**Goal**: Create the shell bootstrap script for `curl -fsSL https://install.cmem.ai | bash`.
+**Goal**: Create the shell bootstrap script for `curl -fsSL https://install.cUnity-Billal-mesloub.ai | bash`.
 
 ### Tasks
 
@@ -347,7 +347,7 @@ Build a beautiful, animated CLI installer for claude-mem using `@clack/prompts` 
 2. **Update `install/vercel.json`** to serve `install.sh` alongside `openclaw.sh`
 
 ### Verification
-- [ ] `curl -fsSL https://install.cmem.ai | bash` downloads and runs installer
+- [ ] `curl -fsSL https://install.cUnity-Billal-mesloub.ai | bash` downloads and runs installer
 - [ ] Interactive prompts work after curl download
 - [ ] Temp file cleaned up on success and failure
 - [ ] Flags pass through correctly
