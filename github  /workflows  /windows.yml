@@ -7,7 +7,7 @@ on:
       - 'plugin/scripts/**'
       - 'package.json'
       - 'bunfig.toml'
-      - '.github/workflows/windows.yml'
+      - 'github/workflows/windows.yml'
   push:
     branches: [main]
 
