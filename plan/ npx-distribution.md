@@ -1,4 +1,4 @@
-# Plan: NPX Distribution + Universal IDE/CLI Coverage for claude-mem
+# Plan: NPX Distribution + Universal IDE/CLI Coverage for claude-Unity-Billal-mesloub
 
 ## Problem
 
@@ -12,23 +12,23 @@
 - **Transcript watcher already exists**: `src/services/transcripts/` has a fully built schema-based JSONL tailer. It just needs schemas for more tools.
 - **3 integration tiers exist**: (1) Hook/plugin-based (Claude Code, Gemini CLI, OpenCode, Windsurf, Codex CLI, OpenClaw), (2) MCP-based (Cursor, Copilot CLI, Antigravity, Goose, Crush, Roo Code), (3) Transcript-based (anything with structured log files).
 - **OpenClaw plugin already built**: Full plugin at `openclaw/src/index.ts` (1000+ lines). Needs to be wired into the npx installer.
-- **Gemini CLI is architecturally near-identical to Claude Code**: 11 lifecycle hooks, JSON via stdin/stdout, exit code 0/2 convention, `GEMINI.md` context files, `~/.gemini/settings.json`. This is the easiest high-value integration.
+- **Gemini CLI is architecturally near-identical to Claude Code**: 11 lifecycle hooks, JSON via stdin/stdout, exit code 0/2 convention, `GEMINI.md` context files, `~/gemini/settings.json`. This is the easiest high-value integration.
 - **OpenCode has the richest plugin system**: 20+ hook events across 12 categories, JS/TS plugin modules, custom tool creation, MCP support. 110k stars — largest open-source AI CLI.
 - **`npx skills` by Vercel supports 41 agents** — proving the multi-IDE installer UX works. Their agent detection pattern (check if config dir exists) is the right model.
 - **All IDEs share a single worker on port 37777**: One worker serves all integrations. Session source (which IDE) is tracked via the `source` field in hook payloads. No per-IDE worker instances.
-- **This npx CLI fully replaces the old `claude-mem-installer`**: Not a supplement — the complete replacement.
+- **This npx CLI fully replaces the old `claude-Unity-Billal-mesloub-installer`**: Not a supplement — the complete replacement.
 
 ## Solution
 
-`npx claude-mem` becomes a unified CLI: install, configure any IDE, manage the worker, search memory.
+`npx claude-Unity-Billal-mesloub` becomes a unified CLI: install, configure any IDE, manage the worker, search memory.
 
 ```
-npx claude-mem                          # Interactive install + IDE selection
-npx claude-mem install                  # Same as above
-npx claude-mem install --ide windsurf   # Direct IDE setup
-npx claude-mem start / stop / status    # Worker management
-npx claude-mem search <query>           # Search memory from terminal
-npx claude-mem transcript watch         # Start transcript watcher
+npx claude-Unity-Billal-mesloub                          # Interactive install + IDE selection
+npx claude-Unity-Billal-mesloub install                  # Same as above
+npx claude-Unity-Billal-mesloub install --ide windsurf   # Direct IDE setup
+npx claude-Unity-Billal-mesloub start / stop / status    # Worker management
+npx claude-Unity-Billal-mesloub search <query>           # Search memory from terminal
+npx claude-Unity-Billal-mesloub transcript watch         # Start transcript watcher
 ```
 
 ## Platform Support
@@ -37,11 +37,11 @@ npx claude-mem transcript watch         # Start transcript watcher
 
 - **Config paths**: Use `os.homedir()` and `path.join()` everywhere — never hardcode `/` or `~`
 - **Shebangs**: `#!/usr/bin/env node` for the CLI entry point (cross-platform via Node)
-- **Bun detection**: Check `PATH`, common install locations per platform (`%USERPROFILE%\.bun\bin\bun.exe` on Windows, `~/.bun/bin/bun` on Unix)
+- **Bun detection**: Check `PATH`, common install locations per platform (`%USERPROFILE%\bun\bin\bun.exe` on Windows, `~/bun/bin/bun` on Unix)
 - **File permissions**: `fs.chmod` is a no-op on Windows; don't gate on it
 - **Process management**: Worker start/stop uses signals on Unix, taskkill on Windows — match existing `worker-service.ts` patterns
-- **VS Code paths**: `~/Library/Application Support/Code/` (macOS), `~/.config/Code/` (Linux), `%APPDATA%/Code/` (Windows)
-- **Shell config**: `.bashrc`/`.zshrc` on Unix, PowerShell profile on Windows (for PATH modifications if needed)
+- **VS Code paths**: `~/Library/Application Support/Code/` (macOS), `~/config/Code/` (Linux), `%APPDATA%/Code/` (Windows)
+- **Shell config**: `bashrc`/`zshrc` on Unix, PowerShell profile on Windows (for PATH modifications if needed)
 
 ---
 
@@ -53,33 +53,33 @@ npx claude-mem transcript watch         # Start transcript watcher
 
 | Tool | Hooks | Config Location | Context Injection | Stars/Users |
 |------|-------|----------------|-------------------|-------------|
-| Claude Code | 5 lifecycle hooks | `~/.claude/settings.json` | CLAUDE.md, plugins | ~25% market |
-| Gemini CLI | 11 lifecycle hooks | `~/.gemini/settings.json` | GEMINI.md | ~95k stars |
+| Claude Code | 5 lifecycle hooks | `~/claude/settings.json` | CLAUDE.md, plugins | ~25% market |
+| Gemini CLI | 11 lifecycle hooks | `~/gemini/settings.json` | GEMINI.md | ~95k stars |
 | OpenCode | 20+ event hooks + plugin SDK | `~/.config/opencode/opencode.json` | AGENTS.md + rules dirs | ~110k stars |
-| Windsurf | 11 Cascade hooks | `.windsurf/hooks.json` | `.windsurf/rules/*.md` | ~1M users |
-| Codex CLI | `notify` hook | `~/.codex/config.toml` | `.codex/AGENTS.md`, MCP | Growing (OpenAI) |
-| OpenClaw | 8 event hooks + plugin SDK | `~/.openclaw/openclaw.json` | MEMORY.md sync | ~196k stars |
+| Windsurf | 11 Cascade hooks | `windsurf/hooks.json` | `windsurf/rules/*.md` | ~1M users |
+| Codex CLI | `notify` hook | `~/codex/config.toml` | `codex/AGENTS.md`, MCP | Growing (OpenAI) |
+| OpenClaw | 8 event hooks + plugin SDK | `~/openclaw/openclaw.json` | MEMORY.md sync | ~196k stars |
 
 **Tier 2 — MCP Integration** (tool-based, search + context injection):
 
 | Tool | MCP Support | Config Location | Context Injection |
 |------|------------|----------------|-------------------|
-| Cursor | First-class | `.cursor/mcp.json` | `.cursor/rules/*.mdc` |
-| Copilot CLI | First-class (default MCP) | `~/.copilot/config` | `.github/copilot-instructions.md` |
-| Antigravity | First-class + MCP Store | `~/.gemini/antigravity/mcp_config.json` | `.agent/rules/`, GEMINI.md |
-| Goose | Native MCP (co-developed protocol) | `~/.config/goose/config.yaml` | MCP context |
+| Cursor | First-class | `cursor/mcp.json` | `cursor/rules/*.mdc` |
+| Copilot CLI | First-class (default MCP) | `~/copilot/config` | `github/copilot-instructions.md` |
+| Antigravity | First-class + MCP Store | `~/gemini/antigravity/mcp_config.json` | `agent/rules/`, GEMINI.md |
+| Goose | Native MCP (co-developed protocol) | `~/config/goose/config.yaml` | MCP context |
 | Crush | MCP + Skills | JSON config (charm.land schema) | Skills system |
-| Roo Code | First-class | `.roo/` | `.roo/rules/*.md`, `AGENTS.md` |
+| Roo Code | First-class | `roo/` | `roo/rules/*.md`, `AGENTS.md` |
 | Warp | MCP + Warp Drive | `WARP.md` + Warp Drive UI | `WARP.md` |
 
 **Tier 3 — Transcript File Watching** (passive, file-based):
 
 | Tool | Transcript Location | Format |
 |------|-------------------|--------|
-| Claude Code | `~/.claude/projects/<proj>/<session>.jsonl` | JSONL |
-| Codex CLI | `~/.codex/sessions/**/*.jsonl` | JSONL |
-| Gemini CLI | `~/.gemini/tmp/<hash>/chats/` | JSON |
-| OpenCode | `.opencode/` (SQLite) | SQLite — needs export |
+| Claude Code | `~/claude/projects/<proj>/<session>jsonl` | JSONL |
+| Codex CLI | `~/codex/sessions/**/*jsonl` | JSONL |
+| Gemini CLI | `~/gemini/tmp/<hash>/chats/` | JSON |
+| OpenCode | `opencode/` (SQLite) | SQLite — needs export |
 
 ### What claude-mem Already Has
 
@@ -112,36 +112,36 @@ npx claude-mem transcript watch         # Start transcript watcher
 1. **Add `bin` field to `package.json`**:
    ```json
    "bin": {
-     "claude-mem": "./dist/cli/index.js"
+     "claude-Unity-Billal-mesloub": "./dist/cli/index.js"
    }
    ```
 
 2. **Create `src/npx-cli/index.ts`** — a Node.js CLI router (NOT Bun) with command categories:
 
    **Install commands** (pure Node.js, no Bun required):
-   - `npx claude-mem` or `npx claude-mem install` → interactive install (IDE multi-select)
+   - `npx claude-Unity-Billal-mesloub` or `npx claude-Unity-Billal-mesloub install` → interactive install (IDE multi-select)
    - `npx claude-mem install --ide <name>` → direct IDE setup (only for implemented IDEs; unimplemented ones error with "Support for <name> coming soon")
-   - `npx claude-mem update` → update to latest version
-   - `npx claude-mem uninstall` → remove plugin and IDE configs
-   - `npx claude-mem version` → print version
+   - `npx claude-Unity-Billal-mesloub update` → update to latest version
+   - `npx claude-Unity-Billal-mesloub uninstall` → remove plugin and IDE configs
+   - `npx claude-Unity-Billal-mesloub version` → print version
 
    **Runtime commands** (delegate to Bun via installed plugin):
-   - `npx claude-mem start` → spawns `bun worker-service.cjs start`
-   - `npx claude-mem stop` → spawns `bun worker-service.cjs stop`
-   - `npx claude-mem restart` → spawns `bun worker-service.cjs restart`
-   - `npx claude-mem status` → spawns `bun worker-service.cjs status`
+   - `npx claude-Unity-Billal-mesloub start` → spawns `bun worker-service.cjs start`
+   - `npx claude-Unity-Billal-mesloub stop` → spawns `bun worker-service.cjs stop`
+   - `npx claude-Unity-Billal-mesloub restart` → spawns `bun worker-service.cjs restart`
+   - `npx claude-Unity-Billal-mesloub status` → spawns `bun worker-service.cjs status`
    - `npx claude-mem search <query>` → hits `GET http://localhost:37777/api/search?q=<query>`
    - `npx claude-mem transcript watch` → starts transcript watcher
 
-   **Runtime commands must check for installation first**: If plugin directory doesn't exist at `~/.claude/plugins/marketplaces/thedotmack/`, print "claude-mem is not installed. Run: npx claude-mem install" and exit.
+   **Runtime commands must check for installation first**: If plugin directory doesn't exist at `~/claude/plugins/marketplaces/Unity-Billal-mesloub/`, print "claude-mem is not installed. Run: npx claude-mem install" and exit.
 
 3. **The install flow** (fully replaces git clone + build):
    - Detect the npm package's own location (`import.meta.url` or `__dirname`)
-   - Copy `plugin/` from the npm package to `~/.claude/plugins/marketplaces/thedotmack/`
+   - Copy `plugin/` from the npm package to `~/claude/plugins/marketplaces/thedotmack/`
    - Copy `plugin/` to `~/.claude/plugins/cache/thedotmack/claude-mem/<version>/`
-   - Register marketplace in `~/.claude/plugins/known_marketplaces.json`
-   - Register plugin in `~/.claude/plugins/installed_plugins.json`
-   - Enable in `~/.claude/settings.json`
+   - Register marketplace in `~/claude/plugins/known_marketplaces.json`
+   - Register plugin in `~/claude/plugins/installed_plugins.json`
+   - Enable in `~/claude/settings.json`
    - Run `npm install` in the marketplace dir (for `@chroma-core/default-embed` — native ONNX binaries, can't be bundled)
    - Trigger smart-install.js for Bun/uv setup
    - Run IDE-specific setup for each selected IDE
@@ -150,19 +150,19 @@ npx claude-mem transcript watch         # Start transcript watcher
    - Auto-detect installed IDEs by checking config directories
    - Present multi-select with detected IDEs pre-selected
    - Detection map:
-     - Claude Code: `~/.claude/` exists
-     - Gemini CLI: `~/.gemini/` exists
-     - OpenCode: `~/.config/opencode/` exists OR `opencode` in PATH
-     - OpenClaw: `~/.openclaw/` exists
-     - Windsurf: `~/.codeium/windsurf/` exists
-     - Codex CLI: `~/.codex/` exists
-     - Cursor: `~/.cursor/` exists
+     - Claude Code: `~/claude/` exists
+     - Gemini CLI: `~/gemini/` exists
+     - OpenCode: `~/config/opencode/` exists OR `opencode` in PATH
+     - OpenClaw: `~/openclaw/` exists
+     - Windsurf: `~/codeium/windsurf/` exists
+     - Codex CLI: `~/codex/` exists
+     - Cursor: `~/cursor/` exists
      - Copilot CLI: `copilot` in PATH (it's a CLI tool, not a config dir)
-     - Antigravity: `~/.gemini/antigravity/` exists
-     - Goose: `~/.config/goose/` exists OR `goose` in PATH
+     - Antigravity: `~/gemini/antigravity/` exists
+     - Goose: `~/config/goose/` exists OR `goose` in PATH
      - Crush: `crush` in PATH
      - Roo Code: check for VS Code extension directory containing `roo-code`
-     - Warp: `~/.warp/` exists OR `warp` in PATH
+     - Warp: `~/warp/` exists OR `warp` in PATH
 
 5. **The runtime command routing**:
    - Locate the installed plugin directory
@@ -178,13 +178,13 @@ npx claude-mem transcript watch         # Start transcript watcher
 
 ### Verification
 
-- `npx claude-mem install` copies plugin to correct directories on macOS, Linux, and Windows
+- `npx claude-Unity-Billal-mesloub install` copies plugin to correct directories on macOS, Linux, and Windows
 - Auto-detection finds installed IDEs
-- `npx claude-mem start/stop/status` work after install
-- `npx claude-mem search "test"` returns results
-- `npx claude-mem start` before install prints helpful error message
-- `npx claude-mem update` and `npx claude-mem uninstall` work correctly
-- `npx claude-mem version` prints version
+- `npx claude-Unity-Billal-mesloub start/stop/status` work after install
+- `npx claude-Unity-Billal-mesloub search "test"` returns results
+- `npx claude-Unity-Billal-mesloub start` before install prints helpful error message
+- `npx claude-Unity-Billal-mesloub update` and `npx claude-mem uninstall` work correctly
+- `npx claude-Unity-Billal-mesloub version` prints version
 
 ### Anti-patterns
 
@@ -289,7 +289,7 @@ npx claude-mem transcript watch         # Start transcript watcher
      - `SessionEnd`: `reason` → session finalization
 
 2. **Create Gemini CLI hooks installer** at `src/services/integrations/GeminiCliHooksInstaller.ts`:
-   - Write hooks to `~/.gemini/settings.json` under the `hooks` key
+   - Write hooks to `~/gemini/settings.json` under the `hooks` key
    - Must **merge** with existing settings (read → parse → deep merge → write)
    - Hook config format (verified against official docs):
      ```json
@@ -305,8 +305,8 @@ npx claude-mem transcript watch         # Start transcript watcher
    - Note: `matcher` uses regex for tool events, exact string for lifecycle events. `"*"` or `""` matches all.
    - Hook groups support `sequential: boolean` (default false = parallel execution)
    - Security: Project-level hooks are fingerprinted — if name/command changes, user is warned
-   - Context injection via `~/.gemini/GEMINI.md` (append claude-mem section with `<claude-mem-context>` tags, same pattern as CLAUDE.md)
-   - Settings hierarchy: project `.gemini/settings.json` > user `~/.gemini/settings.json` > system `/etc/gemini-cli/settings.json`
+   - Context injection via `~/gemini/GEMINI.md` (append claude-mem section with `<claude-mem-context>` tags, same pattern as CLAUDE.md)
+   - Settings hierarchy: project `gemini/settings.json` > user `~/gemini/settings.json` > system `/etc/gemini-cli/settings.json`
 
 3. **Register `gemini-cli` in `getPlatformAdapter()`** at `src/cli/adapters/index.ts`
 
@@ -314,7 +314,7 @@ npx claude-mem transcript watch         # Start transcript watcher
 
 ### Verification
 
-- `npx claude-mem install --ide gemini-cli` merges hooks into `~/.gemini/settings.json`
+- `npx claude-mem install --ide gemini-cli` merges hooks into `~/gemini/settings.json`
 - Gemini CLI sessions are captured by the worker
 - `AfterTool` events produce observations with correct `tool_name`, `tool_input`, `tool_response`
 - `GEMINI.md` gets claude-mem context section
@@ -323,7 +323,7 @@ npx claude-mem transcript watch         # Start transcript watcher
 
 ### Anti-patterns
 
-- Do NOT overwrite `~/.gemini/settings.json` — must deep merge
+- Do NOT overwrite `~/gemini/settings.json` — must deep merge
 - Do NOT map all 11 events — the 6 skipped events would produce noise, not signal
 - Do NOT use `type: "runtime"` — that's for internal extensions only; use `type: "command"`
 - Advisory hooks (SessionStart, SessionEnd, PreCompress, Notification) cannot block — don't set `decision` or `continue` fields on them
@@ -332,7 +332,7 @@ npx claude-mem transcript watch         # Start transcript watcher
 
 ## Phase 4: OpenCode Integration (Tier 1 — Plugin-Based)
 
-**Why next**: 110k stars, richest plugin ecosystem. OpenCode plugins are JS/TS modules auto-loaded from plugin directories. OpenCode also has a Claude Code compatibility fallback (reads `~/.claude/CLAUDE.md` if no global `AGENTS.md` exists, controllable via `OPENCODE_DISABLE_CLAUDE_CODE_PROMPT=1`).
+**Why next**: 110k stars, richest plugin ecosystem. OpenCode plugins are JS/TS modules auto-loaded from plugin directories. OpenCode also has a Claude Code compatibility fallback (reads `~/claude/CLAUDE.md` if no global `AGENTS.md` exists, controllable via `OPENCODE_DISABLE_CLAUDE_CODE_PROMPT=1`).
 
 ### Verified Plugin API (from `packages/plugin/src/index.ts`)
 
@@ -380,7 +380,7 @@ type PluginInput = {
 ```typescript
 return {
   tool: {
-    claude_mem_search: tool({
+    claude_Unity-Billal-mesloub_search: tool({
       description: "Search claude-mem memory database",
       args: { query: tool.schema.string() },
       async execute(args, context) {
@@ -415,21 +415,21 @@ return {
 2. **Build the plugin** in the esbuild pipeline → `dist/opencode-plugin/index.js`
 
 3. **Create OpenCode setup in installer** (two options, prefer file-based):
-   - **Option A (file-based):** Copy plugin to `~/.config/opencode/plugins/claude-mem.ts` (auto-loaded at startup)
-   - **Option B (npm-based):** Add to `~/.config/opencode/opencode.json` under `"plugin"` array: `["claude-mem"]`
+   - **Option A (file-based):** Copy plugin to `~/config/opencode/plugins/claude-Unity-Billal-mesloub.ts` (auto-loaded at startup)
+   - **Option B (npm-based):** Add to `~/config/opencode/opencode.json` under `"plugin"` array: `["claude-Unity-Billal-mesloub"]`
    - Config also supports JSONC (`opencode.jsonc`) and legacy `config.json`
-   - Context injection: Append to `~/.config/opencode/AGENTS.md` (or create it) with `<claude-mem-context>` tags
+   - Context injection: Append to `~/config/opencode/AGENTS.md` (or create it) with `<claude-mem-context>` tags
    - Additional context via `"instructions"` config key (supports file paths, globs, remote URLs)
 
 4. **Add OpenCode to installer IDE selection**
 
 ### OpenCode Verification
 
-- `npx claude-mem install --ide opencode` registers the plugin (file or npm)
+- `npx claude-Unity-Billal-mesloub install --ide opencode` registers the plugin (file or npm)
 - OpenCode loads the plugin on next session
 - `tool.execute.after` interceptor produces observations with `tool`, `args`, `output`
 - Bus events (`session.created`, `session.deleted`) handle session lifecycle
-- `claude_mem_search` custom tool works in OpenCode sessions
+- `claude_Unity-Billal-mesloub_search` custom tool works in OpenCode sessions
 - Context is injected via AGENTS.md
 
 ### OpenCode Anti-patterns
@@ -438,7 +438,7 @@ return {
 - Do NOT use `tool('name', schema, handler)` — wrong signature. Name is the key in the `tool:{}` map
 - Do NOT assume bus events have the same `(input, output)` mutation pattern — they only receive `{ event }`
 - OpenCode plugins run in Bun — the plugin CAN use Bun APIs (unlike the npx CLI itself)
-- Do NOT hardcode `~/.config/opencode/` — respect `OPENCODE_CONFIG_DIR` env var if set
+- Do NOT hardcode `~/config/opencode/` — respect `OPENCODE_CONFIG_DIR` env var if set
 
 ---
 
@@ -506,8 +506,8 @@ return {
    - For `post_cascade_response`: `tool_info.response` → full AI response observation
 
 2. **Create Windsurf hooks installer** at `src/services/integrations/WindsurfHooksInstaller.ts`:
-   - Write hooks to `~/.codeium/windsurf/hooks.json` (user-level, for global coverage)
-   - Per-workspace override at `.windsurf/hooks.json` if user chooses workspace-level install
+   - Write hooks to `~/codeium/windsurf/hooks.json` (user-level, for global coverage)
+   - Per-workspace override at `windsurf/hooks.json` if user chooses workspace-level install
    - Config format (verified):
      ```json
      {
@@ -522,7 +522,7 @@ return {
      ```
    - Note: Tilde expansion (`~`) is NOT supported in `working_directory` — use absolute paths
    - Merge order: cloud → system → user → workspace (all hooks at all levels execute)
-   - Context injection via `.windsurf/rules/claude-mem-context.md` (workspace-level; Windsurf rules are workspace-scoped)
+   - Context injection via `windsurf/rules/claude-mem-context.md` (workspace-level; Windsurf rules are workspace-scoped)
    - Rule limits: 6,000 chars per file, 12,000 chars total across all rules
 
 3. **Register `windsurf` in `getPlatformAdapter()`** at `src/cli/adapters/index.ts`
@@ -531,10 +531,10 @@ return {
 
 ### Windsurf Verification
 
-- `npx claude-mem install --ide windsurf` creates hooks config at `~/.codeium/windsurf/hooks.json`
+- `npx claude-mem install --ide windsurf` creates hooks config at `~/codeium/windsurf/hooks.json`
 - Windsurf sessions are captured by the worker via post-action hooks
 - `trajectory_id` is used as session identifier
-- Context is injected via `.windsurf/rules/claude-mem-context.md` (under 6K char limit)
+- Context is injected via `windsurf/rules/claude-mem-context.md` (under 6K char limit)
 - Existing hooks.json is preserved (merge, not overwrite)
 
 ### Windsurf Anti-patterns
@@ -558,9 +558,9 @@ Codex has both a `notify` hook (real-time) and transcript files (complete histor
 1. **Create Codex transcript schema** — the sample in `src/services/transcripts/config.ts` is already production-quality. Verify against current Codex CLI JSONL format and update if needed.
 
 2. **Create Codex setup in installer**:
-   - Write transcript-watch config to `~/.claude-mem/transcript-watch.json`
-   - Set up watch for `~/.codex/sessions/**/*.jsonl` using existing CODEX_SAMPLE_SCHEMA
-   - Context injection via `.codex/AGENTS.md` (Codex reads this natively)
+   - Write transcript-watch config to `~/claude-Unity-Billal-mesloub/transcript-watch.json`
+   - Set up watch for `~/codex/sessions/**/*.jsonl` using existing CODEX_SAMPLE_SCHEMA
+   - Context injection via `codex/AGENTS.md` (Codex reads this natively)
    - Must merge with existing `config.toml` if it exists (read → parse → merge → write)
 
 3. **Add Codex CLI to installer IDE selection**
@@ -581,9 +581,9 @@ Codex has both a `notify` hook (real-time) and transcript files (complete histor
 ### What to implement
 
 1. **Wire OpenClaw into the npx installer**:
-   - Detect `~/.openclaw/` directory
+   - Detect `~/openclaw/` directory
    - Copy pre-built plugin from `openclaw/dist/` (built in Phase 2) to OpenClaw plugins location
-   - Register in `~/.openclaw/openclaw.json` under `plugins.claude-mem`
+   - Register in `~/openclaw/openclaw.json` under `plugins.claude-mem`
    - Configure worker port, project name, syncMemoryFile
    - Optionally prompt for observation feed setup (channel type + target ID)
 
@@ -612,19 +612,19 @@ MCP-only integrations provide: search tools + context injection. They do NOT cap
 ### What to implement
 
 1. **Copilot CLI MCP setup**:
-   - Write MCP config to `~/.copilot/config` (merge, not overwrite)
-   - Context injection: `.github/copilot-instructions.md`
+   - Write MCP config to `~/copilot/config` (merge, not overwrite)
+   - Context injection: `github/copilot-instructions.md`
    - Detection: `copilot` command in PATH
 
 2. **Antigravity MCP setup**:
-   - Write MCP config to `~/.gemini/antigravity/mcp_config.json` (merge, not overwrite)
-   - Context injection: `~/.gemini/GEMINI.md` (shared with Gemini CLI) and/or `.agent/rules/claude-mem-context.md`
-   - Detection: `~/.gemini/antigravity/` exists
+   - Write MCP config to `~/gemini/antigravity/mcp_config.json` (merge, not overwrite)
+   - Context injection: `~/gemini/GEMINI.md` (shared with Gemini CLI) and/or `agent/rules/claude-mem-context.md`
+   - Detection: `~/gemini/antigravity/` exists
    - Note: Antigravity has NO hook system — MCP is the only integration path
 
 3. **Goose MCP setup**:
-   - Write MCP config to `~/.config/goose/config.yaml` (YAML merge — use a lightweight YAML parser or write the block manually if config doesn't exist)
-   - Detection: `~/.config/goose/` exists OR `goose` in PATH
+   - Write MCP config to `~/config/goose/config.yaml` (YAML merge — use a lightweight YAML parser or write the block manually if config doesn't exist)
+   - Detection: `~/config/goose/` exists OR `goose` in PATH
    - Note: Goose co-developed MCP with Anthropic, so MCP support is excellent
 
 4. **Crush MCP setup**:
@@ -632,14 +632,14 @@ MCP-only integrations provide: search tools + context injection. They do NOT cap
    - Detection: `crush` in PATH
 
 5. **Roo Code MCP setup**:
-   - Write MCP config to `.roo/` or workspace settings
-   - Context injection: `.roo/rules/claude-mem-context.md`
+   - Write MCP config to `roo/` or workspace settings
+   - Context injection: `roo/rules/claude-Unity-Billal-mesloub-context.md`
    - Detection: Check for VS Code extension directory containing `roo-code`
 
 6. **Warp MCP setup**:
    - Warp uses `WARP.md` in project root for context injection (similar to CLAUDE.md)
    - MCP servers configured via Warp Drive UI, but also via config files
-   - Detection: `~/.warp/` exists OR `warp` in PATH
+   - Detection: `~/warp/` exists OR `warp` in PATH
    - Note: Warp is a terminal replacement (~26k stars), not just a CLI tool — multi-agent orchestration with management UI
 
 7. **For each**: Add to installer IDE detection and selection
@@ -668,7 +668,7 @@ This is a **full replacement**, not a deprecation.
 
 ### What to implement
 
-1. Remove `claude-mem-installer` npm package (unpublish or mark deprecated with message pointing to `npx claude-mem`)
+1. Remove `claude-Unity-Billal-mesloub-installer` npm package (unpublish or mark deprecated with message pointing to `npx claude-Unity-Billal-mesloub`)
 2. Update `install/public/install.sh` → redirect to `npx claude-mem`
 3. Remove `installer/` directory from the repository (it's replaced by `src/npx-cli/`)
 4. Update docs site to reflect the new install command
@@ -683,11 +683,11 @@ This is a **full replacement**, not a deprecation.
 1. `npm run build` succeeds, produces `dist/cli/index.js` and `openclaw/dist/index.js`
 2. `node dist/cli/index.js install` works clean (no prior install)
 3. Auto-detects installed IDEs correctly per platform
-4. `npx claude-mem start/stop/status/search` all work
-5. `npx claude-mem update` updates correctly
-6. `npx claude-mem uninstall` cleans up all IDE configs
-7. `npx claude-mem version` prints version
-8. `npx claude-mem start` before install shows helpful error
+4. `npx claude-Unity-Billal-mesloub start/stop/status/search` all work
+5. `npx claude-Unity-Billal-mesloub update` updates correctly
+6. `npx claude-Unity-Billal-mesloub uninstall` cleans up all IDE configs
+7. `npx claude-Unity-Billal-mesloub version` prints version
+8. `npx claude-Unity-Billal-mesloub start` before install shows helpful error
 9. No Bun dependency at install time
 
 ### Per-integration verification
