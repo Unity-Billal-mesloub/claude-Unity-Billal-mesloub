@@ -14,35 +14,35 @@ antipattern-czar/
 /plugin/scripts/CLAUDE.md
 
 plugin/node_modules/
-plugin/scripts/claude-mem
+plugin/scripts/claude-Unity-Billal-mesloub
 plugin/data/
 plugin/data.backup/
 
 *.ts
 !*.d.ts
 tsconfig*.json
-.eslintrc*
-.prettierrc*
-.editorconfig
+eslintrc*
+prettierrc*
+editorconfig
 jest.config*
 vitest.config*
 
-.git/
-.github/
-.gitignore
-.claude/
-.cursor/
-.mcp.json
-.plan/
+git/
+github/
+gitignore
+claude/
+cursor/
+mcp.json
+plan/
 
-.DS_Store
-*.log
-*.tmp
-*.temp
+DS_Store
+* log
+* tmp
+* temp
 Thumbs.db
 
 Auto Run Docs/
 ~*/
 http*/
 https*/
-.idea/
+idea/
