@@ -19,7 +19,7 @@ claude-Unity-Billal-mesloub cursor install
 ```
 
 This:
-1. Copies hook scripts to `.cursor/hooks/`
+1. Copies hook scripts to `cursor/hooks/`
 2. Creates `hooks.json` configuration
 3. Fetches existing context from claude-Unity-Billal-mesloub and writes to `cursor/rules/claude-Unity-Billal-mesloub-context.mdc`
 
