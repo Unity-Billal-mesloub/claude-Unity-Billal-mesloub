@@ -9,7 +9,7 @@ assignees: ''
 
 ## Before submitting
 
-- [ ] I searched [existing issues](https://github.com/thedotmack/claude-mem/issues) and confirmed this is not a duplicate
+- [ ] I searched [existing issues](https://github.com/Unity-Billal-mesloub/claude-Unity-Billal-mesloub/issues) and confirmed this is not a duplicate
 
 ---
 
@@ -19,15 +19,15 @@ assignees: ''
 
 ```bash
 # Navigate to the plugin directory
-cd ~/.claude/plugins/marketplaces/thedotmack
+cd ~/claude/plugins/marketplaces/thedotmack
 
 # Run the bug report tool
 npm run bug-report
 ```
 
 **Plugin Paths:**
-- **macOS/Linux**: `~/.claude/plugins/marketplaces/thedotmack`
-- **Windows**: `%USERPROFILE%\.claude\plugins\marketplaces\thedotmack`
+- **macOS/Linux**: `~/claude/plugins/marketplaces/thedotmack`
+- **Windows**: `%USERPROFILE%\claude\plugins\marketplaces\Unity-Billal-mesloub`
 
 **Features:**
 - 🌎 Auto-translates any language to English
@@ -61,8 +61,8 @@ What you expected to happen.
 
 ### Logs
 Worker logs are located at:
-- **Path**: `~/.claude-mem/logs/worker-YYYY-MM-DD.log`
-- **Example**: `~/.claude-mem/logs/worker-2025-12-14.log`
+- **Path**: `~/claude-Unity-Billal-mesloub/logs/worker-YYYY-MM-DD.log`
+- **Example**: `~/claude-Unity-Billal-mesloub/logs/worker-2025-12-14.log`
 
 Please paste relevant log entries (last 50 lines or error messages):
 
