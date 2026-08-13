@@ -1,15 +1,9 @@
-🌐 هذه ترجمة آلية. نرحب بالتصحيحات من المجتمع!
 
 <section dir="rtl">
 
 <h1 align="center">
   <br>
-  <a href="https://github.com/thedotmack/claude-mem">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/thedotmack/claude-mem/main/docs/public/claude-mem-logo-for-dark-mode.webp">
-      <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/thedotmack/claude-mem/main/docs/public/claude-mem-logo-for-light-mode.webp">
-      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem/main/docs/public/claude-mem-logo-for-light-mode.webp" alt="Claude-Mem" width="400">
-    </picture>
+  <a href="https://github.com/Unity-Billal-mesloub/claude-Unity-Billal-mesloub">
   </a>
   <br>
   <a href="https://vercel.com/open-source-program">
@@ -55,8 +49,6 @@
 <h4 align="center">نظام دائم لضغط الذاكرة، مصمم خصيصاً لـ <a href="https://claude.com/claude-code" target="_blank">Claude Code</a>.</h4>
 
 <p align="center">
-  <a href="LICENSE">
-    <img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" alt="License">
   </a>
   <a href="package.json">
     <img src="https://img.shields.io/badge/version-13.4.0-green.svg" alt="Version">
@@ -64,18 +56,13 @@
   <a href="package.json">
     <img src="https://img.shields.io/badge/node-%3E%3D20.0.0-brightgreen.svg" alt="Node">
   </a>
-  <a href="https://github.com/thedotmack/awesome-claude-code">
+  <a href="https://github.com/Unity-Billal-mesloub/awesome-claude-code">
     <img src="https://awesome.re/mentioned-badge.svg" alt="Mentioned in Awesome Claude Code">
   </a>
 </p>
 
 <p align="center">
   <a href="https://trendshift.io/repositories/15496" target="_blank">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/thedotmack/claude-mem/main/docs/public/trendshift-badge-dark.svg">
-      <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/thedotmack/claude-mem/main/docs/public/trendshift-badge.svg">
-      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem/main/docs/public/trendshift-badge.svg" alt="thedotmack/claude-mem | Trendshift" width="250" height="55"/>
-    </picture>
   </a>
 </p>
 
@@ -84,30 +71,23 @@
 <table align="center">
   <tr>
     <td align="center">
-      <a href="https://github.com/thedotmack/claude-mem">
-        <picture>
-          <img
-            src="https://raw.githubusercontent.com/thedotmack/claude-mem/main/docs/public/cm-preview.gif"
-            alt="Claude-Mem Preview"
-            width="500"
-          >
-        </picture>
+      <a href="https://github.com/Unity-Billal-mesloub/claude-Unity-Billal-mesloub">
       </a>
     </td>
     <td align="center">
-      <a href="https://www.star-history.com/#thedotmack/claude-mem&Date">
+      <a href="https://www.star-history.com/#Unity-Billal-mesloub/claude-Unity-Billal-mesloub&Date">
         <picture>
           <source
             media="(prefers-color-scheme: dark)"
-            srcset="https://api.star-history.com/image?repos=thedotmack/claude-mem&type=date&theme=dark&legend=top-left"
+            srcset="https://api.star-history.com/image?repos=thedotmack/claude-Unity-Billal-mesloub&type=date&theme=dark&legend=top-left"
           />
           <source
             media="(prefers-color-scheme: light)"
-            srcset="https://api.star-history.com/image?repos=thedotmack/claude-mem&type=date&legend=top-left"
+            srcset="https://api.star-history.com/image?repos=Unity-Billal-mesloub/claude-Unity-Billal-mesloub&type=date&legend=top-left"
           />
           <img
             alt="Star History Chart"
-            src="https://api.star-history.com/image?repos=thedotmack/claude-mem&type=date&legend=top-left"
+            src="https://api.star-history.com/image?repos=Unity-Billal-mesloub/claude-Unity-Billal-mesloub&type=date&legend=top-left"
             width="500"
           />
         </picture>
@@ -127,7 +107,7 @@
 </p>
 
 <p align="center">
-  يحافظ Claude-Mem على السياق بسلاسة عبر الجلسات من خلال تسجيل ملاحظات استخدام الأدوات تلقائياً، وإنشاء ملخصات دلالية، وإتاحتها للجلسات المستقبلية. يتيح هذا لـ Claude الحفاظ على استمرارية المعرفة حول المشاريع حتى بعد انتهاء الجلسات أو إعادة الاتصال.
+  يحclaude-Unity-Billal-mesloubعلى السياق بسلاسة عبر الجلسات من خلال تسجيل ملاحظات استخدام الأدوات تلقائياً، وإنشاء ملخصات دلالية، وإتاحتها للجلسات المستقبلية. يتيح هذا لـ Claude الحفاظ على استمرارية المعرفة حول المشاريع حتى بعد انتهاء الجلسات أو إعادة الاتصال.
 </p>
 
 ---
@@ -137,27 +117,27 @@
 قم بالتثبيت بأمر واحد:
 
 ```bash
-npx claude-mem install
+npx claude-claude-Unity-Billal-mesloub install
 ```
 
 أو قم بالتثبيت لـ OpenCode:
 
 ```bash
-npx claude-mem install --ide opencode
+npx claude-claude-Unity-Billal-mesloub install --ide opencode
 ```
 
 أو قم بالتثبيت لـ Antigravity CLI ([دليل الإعداد](https://docs.claude-mem.ai/antigravity-cli/setup)):
 
 ```bash
-npx claude-mem install --ide antigravity
+npx claude-claude-Unity-Billal-mesloub install --ide antigravity
 ```
 
 أو قم بالتثبيت من متجر الإضافات (plugin marketplace) داخل Claude Code:
 
 ```bash
-/plugin marketplace add thedotmack/claude-mem
+/plugin marketplace add claude-Unity-Billal-mesloub/claude-claude-Unity-Billal-mesloub
 
-/plugin install claude-mem
+/plugin install claude-claude-Unity-Billal-mesloub
 ```
 
 أعد تشغيل Claude Code. سيظهر السياق من الجلسات السابقة تلقائياً في الجلسات الجديدة.
