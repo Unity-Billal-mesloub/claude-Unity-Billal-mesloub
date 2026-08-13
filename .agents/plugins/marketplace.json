@@ -1,11 +1,11 @@
 {
-  "name": "claude-mem-local",
+  "name": "claude-Unity-Billal-mesloub-local",
   "interface": {
-    "displayName": "claude-mem (local)"
+    "displayName": "claude-Unity-Billal-mesloub (local)"
   },
   "plugins": [
     {
-      "name": "claude-mem",
+      "name": "claude-Unity-Billal-mesloub",
       "source": {
         "source": "local",
         "path": "./plugin"
