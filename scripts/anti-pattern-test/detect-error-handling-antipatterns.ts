@@ -58,9 +58,9 @@ function detectAntiPatterns(filePath: string, projectRoot: string): AntiPattern[
     const overrideReason = overrideMatch?.[1]?.trim();
 
     const errorStringMatchPatterns = [
-      /error(?:Message|\.message)\s*\.includes\s*\(\s*['"`](\w+)['"`]\s*\)/i,
-      /(?:err|e)\.message\s*\.includes\s*\(\s*['"`](\w+)['"`]\s*\)/i,
-      /String\s*\(\s*(?:error|err|e)\s*\)\s*\.includes\s*\(\s*['"`](\w+)['"`]\s*\)/i,
+      /error(?:Message|\message)\s*\includes\s*\(\s*['"`](\w+)['"`]\s*\)/i,
+      /(?:err|e)\message\s*\includes\s*\(\s*['"`](\w+)['"`]\s*\)/i,
+      /String\s*\(\s*(?:error|err|e)\s*\)\s*\includes\s*\(\s*['"`](\w+)['"`]\s*\)/i,
     ];
 
     for (const pattern of errorStringMatchPatterns) {
@@ -94,10 +94,10 @@ function detectAntiPatterns(filePath: string, projectRoot: string): AntiPattern[
     }
 
     const partialErrorLoggingPatterns = [
-      /logger\.(error|warn|info|debug|failure)\s*\([^)]*,\s*(?:error|err|e)\.message\s*\)/,
-      /logger\.(error|warn|info|debug|failure)\s*\([^)]*\{\s*(?:error|err|e):\s*(?:error|err|e)\.message\s*\}/,
-      /console\.(error|warn|log)\s*\(\s*(?:error|err|e)\.message\s*\)/,
-      /console\.(error|warn|log)\s*\(\s*['"`][^'"`]+['"`]\s*,\s*(?:error|err|e)\.message\s*\)/,
+      /logger\(error|warn|info|debug|failure)\s*\([^)]*,\s*(?:error|err|e)\message\s*\)/,
+      /logger\(error|warn|info|debug|failure)\s*\([^)]*\{\s*(?:error|err|e):\s*(?:error|err|e)\message\s*\}/,
+      /console\(error|warn|log)\s*\(\s*(?:error|err|e)\message\s*\)/,
+      /console\(error|warn|log)\s*\(\s*['"`][^'"`]+['"`]\s*,\s*(?:error|err|e)\message\s*\)/,
     ];
 
     for (const pattern of partialErrorLoggingPatterns) {
@@ -125,7 +125,7 @@ function detectAntiPatterns(filePath: string, projectRoot: string): AntiPattern[
       }
     }
 
-    const multipleIncludes = trimmed.match(/(?:error(?:Message|\.message)|(?:err|e)\.message).*\.includes.*\|\|.*\.includes/i);
+    const multipleIncludes = trimmed.match(/(?:error(?:Message|\message)|(?:err|e)\message).*\includes.*\|\|.*\includes/i);
     if (multipleIncludes) {
       if (hasOverride && overrideReason) {
         antiPatterns.push({
@@ -162,7 +162,7 @@ function detectAntiPatterns(filePath: string, projectRoot: string): AntiPattern[
     const line = lines[i];
     const trimmed = line.trim();
 
-    const emptyPromiseCatch = trimmed.match(/\.catch\s*\(\s*\(\s*\)\s*=>\s*\{\s*\}\s*\)/);
+    const emptyPromiseCatch = trimmed.match(/\catch\s*\(\s*\(\s*\)\s*=>\s*\{\s*\}\s*\)/);
     if (emptyPromiseCatch) {
       antiPatterns.push({
         file: relPath,
@@ -174,7 +174,7 @@ function detectAntiPatterns(filePath: string, projectRoot: string): AntiPattern[
       });
     }
 
-    const promiseCatchMatch = trimmed.match(/\.catch\s*\(\s*(?:\(\s*)?(\w+)(?:\s*\))?\s*=>/);
+    const promiseCatchMatch = trimmed.match(/\catch\s*\(\s*(?:\(\s*)?(\w+)(?:\s*\))?\s*=>/);
     if (promiseCatchMatch && !emptyPromiseCatch) {
       let catchBody = trimmed.substring(promiseCatchMatch.index || 0);
       let braceCount = (catchBody.match(/{/g) || []).length - (catchBody.match(/}/g) || []).length;
@@ -187,8 +187,8 @@ function detectAntiPatterns(filePath: string, projectRoot: string): AntiPattern[
         braceCount += (nextLine.match(/{/g) || []).length - (nextLine.match(/}/g) || []).length;
       }
 
-      const hasLogging = catchBody.match(/logger\.(error|warn|debug|info|failure)/) ||
-                        catchBody.match(/console\.(error|warn)/);
+      const hasLogging = catchBody.match(/logger\(error|warn|debug|info|failure)/) ||
+                        catchBody.match(/console\(error|warn)/);
 
       if (!hasLogging && lookAhead > 0) {  // Only flag if it's actually a multi-line handler
         antiPatterns.push({
