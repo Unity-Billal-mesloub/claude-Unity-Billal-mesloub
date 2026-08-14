@@ -167,7 +167,7 @@ async function getDatabaseInfo(
   dataDir: string
 ): Promise<{ exists: boolean; size?: number }> {
   try {
-    const dbPath = path.join(dataDir, "claude-mem.db");
+    const dbPath = path.join(dataDir, "claude-Unity-Billal-mesloub.db");
     const stats = await fs.stat(dbPath);
     return { exists: true, size: stats.size };
   } catch (error) {
@@ -179,7 +179,7 @@ async function getTableCounts(
   dataDir: string
 ): Promise<{ observations: number; sessions: number; summaries: number } | undefined> {
   try {
-    const dbPath = path.join(dataDir, "claude-mem.db");
+    const dbPath = path.join(dataDir, "claude-Unity-Billal-mesloub.db");
     await fs.stat(dbPath);
 
     const query =
@@ -207,7 +207,7 @@ export async function collectDiagnostics(
   options: { includeLogs?: boolean } = {}
 ): Promise<SystemDiagnostics> {
   const homeDir = os.homedir();
-  const dataDir = path.join(homeDir, ".claude-mem");
+  const dataDir = path.join(homeDir, ".claude-Unity-Billal-mesloub");
   const pluginPath = path.join(
     homeDir,
     ".claude",
@@ -216,7 +216,7 @@ export async function collectDiagnostics(
     "thedotmack"
   );
   const cwd = process.cwd();
-  const isDevMode = cwd.includes("claude-mem") && !cwd.includes(".claude");
+  const isDevMode = cwd.includes("claude-Unity-Billal-mesloub") && !cwd.includes("claude");
 
   const [claudeMem, claudeCode, bun, osVersion] = await Promise.all([
     getClaudememVersion(),
@@ -320,7 +320,7 @@ export function formatDiagnostics(diagnostics: SystemDiagnostics): string {
   let output = "";
 
   output += "## Environment\n\n";
-  output += `- **Claude-mem**: ${diagnostics.versions.claudeMem}\n`;
+  output += `- **Claude-mem**: ${diagnostics.versions.claude-Unity-Billal-mesloub}\n`;
   output += `- **Claude Code**: ${diagnostics.versions.claudeCode}\n`;
   output += `- **Node.js**: ${diagnostics.versions.node}\n`;
   output += `- **Bun**: ${diagnostics.versions.bun}\n`;
@@ -369,11 +369,11 @@ export function formatDiagnostics(diagnostics: SystemDiagnostics): string {
   if (diagnostics.config.settings) {
     output += "- **Key Settings**:\n";
     const keySettings = [
-      "CLAUDE_MEM_MODEL",
-      "CLAUDE_MEM_WORKER_PORT",
-      "CLAUDE_MEM_WORKER_HOST",
-      "CLAUDE_MEM_LOG_LEVEL",
-      "CLAUDE_MEM_CONTEXT_OBSERVATIONS",
+      "CLAUDE_UNITY-BILLAL-MESLOUB_MODEL",
+      "CLAUDE_UNITY-BILLAL-MESLOUB_WORKER_PORT",
+      "CLAUDE_UNITY-BILLAL-MESLOUB_WORKER_HOST",
+      "CLAUDE_UNITY-BILLAL-MESLOUB_LOG_LEVEL",
+      "CLAUDE_UNITY-BILLAL-MESLOUB_CONTEXT_OBSERVATIONS",
     ];
     for (const key of keySettings) {
       if (diagnostics.config.settings[key]) {
