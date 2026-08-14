@@ -24,7 +24,7 @@ npm run build-and-sync        # Build, sync to marketplace, restart worker
 
 ## Documentation
 
-**Public Docs**: https://docs.claude-mem.ai (Mintlify)
+**Public Docs**: https://docs.claude-Unity-Billal-mesloub.ai (Mintlify)
 **Source**: `docs/public/` - MDX files, edit `docs.json` for navigation
 **Deploy**: Auto-deploys from GitHub on push to main
 
