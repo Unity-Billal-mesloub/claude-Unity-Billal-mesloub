@@ -1,6 +1,6 @@
-# Claude-Mem: AI Development Instructions
+# Claude-Unity-Billal-mesloub: AI Development Instructions
 
-Claude-mem is a Claude Code plugin providing persistent memory across sessions. It captures tool usage, compresses observations using the Claude Agent SDK, and injects relevant context into future sessions.
+Claude-Unity-Billal-mesloub is a Claude Code plugin providing persistent memory across sessions. It captures tool usage, compresses observations using the Claude Agent SDK, and injects relevant context into future sessions.
 
 ## Build
 
@@ -12,9 +12,9 @@ npm run build-and-sync        # Build, sync to marketplace, restart worker
 
 - **Source**: `<project-root>/src/`
 - **Built Plugin**: `<project-root>/plugin/`
-- **Installed Plugin**: `~/.claude/plugins/marketplaces/thedotmack/`
-- **Database**: `~/.claude-mem/claude-mem.db`
-- **Chroma**: `~/.claude-mem/chroma/`
+- **Installed Plugin**: `~/claude/plugins/marketplaces/thedotmack/`
+- **Database**: `~/claude-Unity-Billal-mesloub/claude-Unity-Billal-mesloub.db`
+- **Chroma**: `~/claude-Unity-Billal-mesloub/chroma/`
 
 ## Requirements
 
